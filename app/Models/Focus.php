@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Equipment extends Model
+class Focus extends Model
 {
     use HasFactory;
-    protected $table = 'equipments'; 
+    protected $table = 'focuses'; 
 
     protected $guarded = [];
 

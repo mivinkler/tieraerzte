@@ -22,15 +22,21 @@
                     <a href="{{ route('praxen.index')}}">Tierarzt suchen</a>
                     <a href="{{ route('praxen.index')}}">Kontakt</a>
                 </div>
-                <div class="text-sm font-semibold text-gray-900">
-                    <a href="{{ route('praxis.create')}}"> Für Tierärzte &rarr;</a>
+                <div class="flex gap-4">
+                    <div class="text-sm font-semibold text-gray-900 border">
+                        <a href="{{ route('praxis.create')}}">Create</a>
+                    </div>
+                    <div class="text-sm font-semibold text-gray-900 border">
+                        <a href="{{ route('praxis.edit', $praxis->id)}}">Edit</a>
+                    </div>
                 </div>
+               
             </nav>
         </div>
     </header>
 
     <main>
-        <div>
+        <div class="mb-40">
             @yield('content')
         </div>
     </main>

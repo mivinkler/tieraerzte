@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Service extends Model
+class Text extends Model
 {
     use HasFactory;
+    protected $table = 'texts'; 
 
-    protected $table = 'services';
     protected $guarded = [];
 
-    public function clinicService()
-    {
-        return $this->belongsTo(clinicService::class, 'service_id', 'id');
+    public function clinic(){
+        return $this->belongsTo(Clinic::class, 'clinic_id', 'id');
     }
-
+    
 }

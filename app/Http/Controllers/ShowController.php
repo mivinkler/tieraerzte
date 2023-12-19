@@ -11,5 +11,8 @@ class ShowController extends Controller
     public function show(Clinic $praxis) {
 
         return view('praxis.show', compact('praxis'));
+        
     }
+    
 }  
+

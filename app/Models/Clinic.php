@@ -13,20 +13,25 @@ class Clinic extends Model
     protected $table = 'clinics';
     protected $guarded = [];
 
-    public function areas() {
-        return $this->hasMany(Area::class, 'clinic_id', 'id');
+
+    public function focus() {
+        return $this->hasOne(Focus::class, 'clinic_id', 'id');
     }
 
-    public function nursings() {
-        return $this->hasMany(Nursing::class, 'clinic_id', 'id');
+    public function serviceOthers() {
+        return $this->hasOne(ServiceOther::class, 'clinic_id', 'id');
     }
 
-    public function services() {
-        return $this->hasMany(Service::class, 'clinic_id', 'id');
+    public function text() {
+        return $this->hasOne(Text::class, 'clinic_id', 'id');
     }
 
-    public function equipments() {
-        return $this->hasMany(Equipment::class, 'clinic_id', 'id');
+    public function Images() {
+        return $this->hasOne(Image::class, 'clinic_id', 'id');
     }
 
+    public function ClinicServices()
+    {
+        return $this->hasMany(ClinicService::class, 'clinic_id', 'id');
+    }
 }

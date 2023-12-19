@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Area extends Model
+class Image extends Model
 {
     use HasFactory;
-    protected $table = 'areas'; 
+    protected $table = 'images'; 
 
     protected $guarded = [];
 
