@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
-use App\Models\Praxis;
-
+use App\Http\Controllers\Main\Controller;
 
 class ImpressumController extends Controller
 {

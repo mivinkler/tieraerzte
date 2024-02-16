@@ -1,3 +1,5 @@
-<div class="flex text-sm flex-wrap gap-4 items-center">
-    <input name="{{ $service_other }}" type="text" class="basis-3/5 rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500">
+<div class="flex text-sm flex-wrap gap-x-4 gap-y-3 items-center mb-6">
+    <input type="checkbox" name="" value="" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" data-textarea-id="{{ $therapy_other_text }}" onchange="toggleTextarea(this)" />
+    <input name="{{ $therapy_other }}" type="text" class="font-medium basis-3/5 rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-900 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500" placeholder="{{ $praxis->therapyOthers->$therapy_other }}">
+    <textarea name="{{ $therapy_other_text }}" id="therapy_{{ $therapy_other_text }}" maxlength="255" class="w-full h-16 rounded-md border-1 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500 hidden">{{ $praxis->therapyOthers->$therapy_other_text }}</textarea>
 </div>

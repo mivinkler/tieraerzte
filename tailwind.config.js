@@ -13,8 +13,8 @@ export default {
         screens: {
           sm: '100%',
           md: '100%',
-          lg: '1280px',
-          xl: '1280px',
+          lg: '1200px',
+          xl: '1200px',
         },
       },
       flexBasis: {
