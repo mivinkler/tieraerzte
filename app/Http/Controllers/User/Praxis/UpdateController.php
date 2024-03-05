@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\User\Praxis;
 
-use App\Http\Controllers\User\BaseController;
+use App\Http\Controllers\User\Praxis\BaseController;
 use App\Http\Requests\Praxis\UpdateRequest;
 use App\Models\Clinic;
 
@@ -15,6 +15,6 @@ class UpdateController extends BaseController
         
         $this->service->update($praxis, $data);
 
-        return redirect()->route('praxis.show', ['praxis' => $praxis->id]);
+        return redirect()->route('main.praxis.show', ['praxis' => $praxis->id]);
     }
 }

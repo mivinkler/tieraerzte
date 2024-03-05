@@ -1,4 +1,4 @@
-@extends('layouts.user_praxis')
+@extends('layouts.user')
 
 @section('content')
 <div  class="bg-sky-200 w-full h-72">

@@ -7,8 +7,10 @@ use App\Models\Clinic;
 
 class PraxisDestroyController extends BaseController
 {
-    public function __invoke(Clinic $praxis) {
+    public function __invoke(Clinic $praxis) 
+    {
         $praxis->delete();
-        return redirect()->route('praxis.index');
+
+        return redirect()->route('admin.praxis.index');
     }
 }

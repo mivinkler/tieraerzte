@@ -13,16 +13,15 @@ class ClinicTherapy extends Model
     
     protected $table = 'clinics_therapies';
     protected $guarded = [];
-    protected $fillable = ['therapy_id', 'therapy_title', 'therapy_text'];
 
     public function clinics()
     {
-        return $this->belongsTo(Clinic::class, 'clinic_id', 'id');
+        return $this->belongsTo(Clinic::class);
     }
 
     public function therapy()
     {
-        return $this->belongsTo(Therapy::class, 'therapy_id', 'id');
+        return $this->belongsTo(Therapy::class);
     }
 
 }

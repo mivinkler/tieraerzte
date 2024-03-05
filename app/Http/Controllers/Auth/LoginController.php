@@ -41,13 +41,14 @@ class LoginController extends Controller
     
     protected function authenticated(Request $request, $user)
     {
-        if ($user->role === 'admin') {
+        if ($user->role === 'admin') 
+        {
             return redirect()->route('admin.praxis.index');
-        } elseif ($user->role === 'praxis') {
-            return redirect()->route('praxis.profile.create');
+        } 
+        if ($user->role === 'user')
+        {
+            return redirect()->route('praxis.create');
         }
-
-        // Дополнительная логика для других ролей, если необходимо
 
         return redirect($this->redirectTo);
     }

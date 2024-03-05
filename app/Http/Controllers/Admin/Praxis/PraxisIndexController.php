@@ -24,8 +24,6 @@ class PraxisIndexController extends Controller
 
         $selectedTherapies = $request->input('therapy_id', []);
 
-        $user = User::first();
-
-        return view('admin.praxis.index', compact('praxen', 'therapies', 'user', 'selectedTherapies'));
+        return view('admin.praxis.index', compact('praxen', 'therapies', 'selectedTherapies'));
     }   
 }

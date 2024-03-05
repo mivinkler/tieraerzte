@@ -1,16 +1,6 @@
-@extends('layouts.user_admin')
+@extends('layouts.admin')
 
 @section('content')
-
-@if($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
 
 <form action="{{ route('admin.user.update', $user->id) }}" method="post" enctype="multipart/form-data">
   @csrf
@@ -45,9 +35,7 @@
           </select>
         </div>
       </div>
-      @include('components.input_area', ['name' => 'email', 'label' => 'Email','width' => 'col-span-8', 'value' => $user->email])
-      @include('components.input_area', ['name' => 'password', 'label' => 'Passwort','width' => 'col-span-4', 'value' => $user->passwort])
-
+      @include('components.input_area', ['name' => 'email', 'label' => 'Email', 'width' => 'col-span-8', 'value' => $user->email])
     </section>
     <div class="flex justify-end">
       <button type="submit" class="object-right rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Speichern</button>

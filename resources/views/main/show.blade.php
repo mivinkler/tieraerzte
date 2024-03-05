@@ -53,7 +53,7 @@
         </div>
         <div>
             @foreach($praxis->clinicTherapies as $therapy)
-                <div class="font-semibold">{{ $therapy->therapy->therapy_title }}</div>       
+                <div class="font-semibold">{{ $therapy->therapy_title }}</div>       
                 <div class="mb-4">{{ $therapy->therapy_text }}</div>
             @endforeach
         </div>

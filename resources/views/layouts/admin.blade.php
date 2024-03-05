@@ -10,7 +10,7 @@
 <body class="w-full">
     <div class="flex text-gray-700 fixed h-full w-full">
         <div class="flex flex-col items-center w-[3vw] pb-4">
-            <div class="w-full h-16 bg-slate-500  shadow-b">
+            <div class="w-full h-16 bg-slate-500 shadow-b">
             </div>
             <div class="">
                 <a class="flex items-center justify-center flex-shrink-0 w-10 h-10 mt-4 rounded hover:bg-gray-300" href="#">

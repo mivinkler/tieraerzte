@@ -22,9 +22,14 @@ class FilterRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => '',
             'title' => 'string',
-            'therapy_id' => '',
+            'street' => '',
             'postcode' => '',
+            'locality' => '',
+            'user' => '',
+            'email' => '',
+            'therapy_id' => '',
         ];
     }
 }

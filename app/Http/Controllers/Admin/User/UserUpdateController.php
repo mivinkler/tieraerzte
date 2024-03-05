@@ -8,8 +8,10 @@ use App\Models\User;
 
 class UserUpdateController extends BaseController 
 {
-    public function __invoke(UpdateRequest $request, User $user) {        
+    public function __invoke(UpdateRequest $request, User $user) {
+
         $data = $request->validated();
+        
         $this->service->update($user, $data);
 
         return redirect()->route('admin.user.index', ['user' => $user->id]);

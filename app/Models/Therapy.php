@@ -15,7 +15,7 @@ class Therapy extends Model
 
     public function clinicTherapy()
     {
-        return $this->belongsTo(ClinicTherapy::class, 'therapy_id', 'id');
+        return $this->belongsTo(ClinicTherapy::class);
     }
 
 }

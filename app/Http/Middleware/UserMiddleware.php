@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PraxisMiddleware
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class PraxisMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if (auth()->guest() || auth()->user()->role !== 'praxis') {
-            return redirect()->route('home');
+        if(auth()->check() && auth()->user()->role === 'user') {
+            return $next($request);
         }
-        return $next($request);
+        
+        return redirect()->route('home');
     }
 }

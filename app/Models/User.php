@@ -7,11 +7,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Traits\Filterable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Filterable;
 
+    const ROLE_ADMIN = 0;
+    const ROLE_USER = 1;
+
+    public static function getRoles()
+    {
+        return [
+            self::ROLE_ADMIN => 'admin',
+            self::ROLE_USER => 'user',
+        ];
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +30,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'clinic_id',
         'email',
         'password',
         'role',
@@ -45,6 +57,6 @@ class User extends Authenticatable
     ];
 
     public function clinic(){
-        return $this->hasOne(Clinic::class, 'user_id', 'id');
+        return $this->belongsTo(Clinic::class);
     }
 }

@@ -17,21 +17,26 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string',
-            'street' => 'string',
-            'postcode' => 'string',
-            'locality' => 'string',
-            'tel' => 'nullable|string',
-            'email' => 'string',
-            'text_aboutus' => 'nullable|string',
-            'text_one' => 'nullable|string',
-            'image' => 'nullable|image',
-            'therapy' => 'nullable|Array',
-            'therapy_text' => 'nullable|Array',
-            'other_one' => 'nullable|string',
-            'other_text_one' => 'nullable|string',
-            'other_two' => 'nullable|string',
-            'other_text_two' => 'nullable|string',
+            'name' => 'string|max:100',
+            'email' => 'string|email|max:100',
+            'password' => 'string|min:6',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Das Feld muss ausgefüllt werden.',
+            'name.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'name.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
+
+            'email.required' => 'Das Feld muss ausgefüllt werden.',
+            'email.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'email.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
+
+            'password.required' => 'Das Feld muss ausgefüllt werden.',
+            'password.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'password.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
         ];
     }
 }

@@ -11,7 +11,7 @@ class PraxisStoreController extends BaseController
     public function __invoke(StoreRequest $request) { 
 
         $data = $request->validated();
-
+        
         $createdPraxis = $this->service->store($data);
 
         return redirect()->route('main.praxis.show', ['praxis' => $createdPraxis->id]);

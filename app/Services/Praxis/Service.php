@@ -1,156 +1,154 @@
 <?php
 
 namespace App\Services\Praxis;
+
 use App\Models\Clinic;
 use App\Models\Therapy;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
 
 class Service {
-    public function store($data) {
-          
-        $text_aboutus = $data['text_aboutus'];
-        $text_one = $data['text_one'];
-        $image = $data['image'] ?? null;
-        $therapyIds = $data['therapy'] ?? null;
-        $therapyTextInput = $data['therapy_text'];
-        $other_one = $data['other_one'];
-        $other_text_one = $data['other_text_one'];
-        $other_two = $data['other_two'];
-        $other_text_two = $data['other_text_two'];
-
-        unset(
-            $data['text_aboutus'], 
-            $data['text_one'], 
-            $data['image'], 
-            $data['therapy'],
-            $data['therapy_text'],
-            $data['other_one'],
-            $data['other_text_one'],
-            $data['other_two'],
-            $data['other_text_two'],
-        );
-
-        $praxis = Clinic::create($data);
-        
-
-        $praxis->text()->create([
-            'text_aboutus' => $text_aboutus,
-            'text_one' => $text_one,
-        ]);
-
-        if ($image) {
-            $imagePath = $image->store('images', 'public');
-            $praxis->Images()->create([
-                'clinic_id' => $praxis->id, 
-                'foto_path' => $imagePath]
-            );
-        }
-
-        if ($therapyIds) {   
-            foreach ($therapyIds as $therapyId) {
-                
-                $therapyText = $therapyTextInput[$therapyId];
-                $therapy = Therapy::find($therapyId);
-                $therapyTitle = $therapy->therapy_title;
+    public function store($data) 
+    {  
+        try {
+            DB::beginTransaction();
     
-                $praxis->clinicTherapies()->create([
-                    'therapy_id' => $therapyId,
-                    'therapy_title' => $therapyTitle, 
-                    'therapy_text' => $therapyText,
+            $praxisData = Arr::except($data, [
+                'text_aboutus', 
+                'text_one', 
+                'image', 
+                'therapy', 
+                'therapy_text', 
+                'other_therapy', 
+                'other_therapy_text',
+                'other_one', 
+                'other_text_one', 
+                'other_two', 
+                'other_text_two'
+            ]);
+            $praxis = Clinic::create($praxisData);
+    
+            if (isset($data['text_aboutus'], $data['text_one'])) {
+                $praxis->text()->create([
+                    'text_aboutus' => $data['text_aboutus'],
+                    'text_one' => $data['text_one'],
                 ]);
-            }   
+            }
+    
+            if (isset($data['image'])) {
+                $imagePath = $data['image']->store('images', 'public');
+                $praxis->images()->create([
+                    'clinic_id' => $praxis->id, 
+                    'foto_path' => $imagePath,
+                ]);
+            }
+    
+            if (isset($data['therapy'])) {
+                $therapyIds = $data['therapy'];
+                $therapies = Therapy::findMany($therapyIds)->keyBy('id');
+    
+                foreach ($therapyIds as $therapyId) {  
+                    if (isset($therapies[$therapyId])) {            
+                        $therapy = $therapies[$therapyId];
+                        $therapyText = $data['therapy_text'][$therapyId] ?? null;
+                        $praxis->clinicTherapies()->create([
+                            'therapy_id' => $therapyId,
+                            'therapy_text' => $therapyText,
+                            'therapy_title' => $therapy->therapy_title,
+                        ]);
+                    }
+                }    
+            }
+
+            if (isset($data['other_therapy'])) {
+                foreach ($data['other_therapy'] as $index => $therapyTitle) {
+                    if (isset($therapyTitle)) {
+                        $therapyText = $data['other_therapy_text'][$index] ?? null;
+                        $praxis->clinicTherapies()->create([
+                            'therapy_id' => 99,
+                            'therapy_title' => $therapyTitle,
+                            'therapy_text' => $therapyText,
+                        ]);
+                    }
+                }
+            }
+    
+            DB::commit();
+            return $praxis;
+
+        } catch (Exception $exception) {
+            DB::rollback();
+            Log::error($exception->getMessage());
+            abort(500, 'Internal Server Error');
         }
-
-        $praxis->therapyOthers()->create([
-            'other_one' => $other_one,
-            'other_text_one' => $other_text_one,
-            'other_two' => $other_two,
-            'other_text_two' => $other_text_two,
-
-        ]);
-
-
-        return $praxis;
-
-
-        // $focusData = request()->validate([
-        //     'focus_headline' => 'nullable|string',
-        //     'focus_title_one' => 'nullable|string',
-        //     'focus_text_one' => 'nullable|string',
-        //     'focus_title_two' => 'nullable|string',
-        //     'focus_text_two' => 'nullable|string',            
-        //     'focus_title_three' => 'nullable|string',
-        //     'focus_text_three' => 'nullable|string', 
-        //     'focus_title_four' => 'nullable|string',
-        //     'focus_text_four' => 'nullable|string', 
-        // ]);
-        
-        // $praxis->focus()->create($focusData);
-
     }
 
+    public function update($praxis, $data) 
+    {
+        try {
+            DB::beginTransaction();
 
-    public function update($praxis, $data) {
+            $praxisData = Arr::except($data, [
+                'text_aboutus', 
+                'text_one', 
+                'image', 
+                'therapy', 
+                'therapy_text', 
+                'other_therapy', 
+                'other_therapy_text', 
 
-        $text_aboutus = $data['text_aboutus'];
-        $text_one = $data['text_one'];
-        $image = $data['image'] ?? null;
-        $therapyIds = $data['therapy'] ?? null;
-        $therapyTextInput = $data['therapy_text'];
-        $other_one = $data['other_one'];
-        $other_text_one = $data['other_text_one'];
-        $other_two = $data['other_two'];
-        $other_text_two = $data['other_text_two'];
-
-        unset(
-            $data['text_aboutus'], 
-            $data['text_one'], 
-            $data['image'], 
-            $data['therapy'],
-            $data['therapy_text'],
-            $data['other_one'],
-            $data['other_text_one'],
-            $data['other_two'],
-            $data['other_text_two'],
-        );
-    
-        $praxis->update($data);
-
-        $praxis->text()->update([
-            'text_aboutus' => $text_aboutus,
-            'text_one' => $text_one,
-        ]);
-
-        if ($image) {
-            $imagePath = $image->store('images', 'public');
-            $praxis->Images()->update([
-                'foto_path' => $imagePath,
             ]);
-        };
+            $praxis->update($praxisData);
 
+            if (isset($data['text_aboutus'], $data['text_one'])) {
+                $praxis->text()->update([
+                    'text_aboutus' => $data['text_aboutus'],
+                    'text_one' => $data['text_one'],
+                ]);
+            }
 
-        if ($therapyIds) {   
-            foreach ($therapyIds as $therapyId) {
-                
-                $therapyText = $therapyTextInput[$therapyId];
-                $therapy = Therapy::find($therapyId);
-                $therapyTitle = $therapy->therapy_title;
+            if (isset($data['image'])) {
+                $imagePath = $data['image']->store('images', 'public');
+                $praxis->images()->updateOrCreate([], ['foto_path' => $imagePath]);
+            }
 
-                $praxis->clinicTherapies()->whereNotIn('therapy_id', $therapyIds)->delete();
-    
-                $praxis->clinicTherapies()->updateOrCreate(
-                    ['therapy_id' => $therapyId],
-                    ['therapy_title' => $therapyTitle, 'therapy_text' => $therapyText]
-                );
-            }   
+            if (isset($data['therapy'])) {
+                $praxis->clinicTherapies()->where('therapy_id', '!=', 99)->whereNotIn('therapy_id', $data['therapy'])->delete();
+            
+                foreach ($data['therapy'] as $therapyId) {
+                    $therapyText = $data['therapy_text'][$therapyId] ?? null;
+                    $therapyTitle = Therapy::find($therapyId)->therapy_title ?? '';
+                    $praxis->clinicTherapies()->updateOrCreate(
+                        ['therapy_id' => $therapyId],
+                        ['therapy_text' => $therapyText, 'therapy_title' => $therapyTitle]
+                    );
+                }
+            }
+            
+            if (isset($data['other_therapy'])) {
+                $validOtherTherapies = array_filter($data['other_therapy'], fn($title) => !empty($title));
+                $praxis->clinicTherapies()->where('therapy_id', 99)->whereNotIn('others', array_keys($validOtherTherapies))->delete();
+            
+                foreach ($validOtherTherapies as $index => $otherTherapyTitle) {
+                    $otherTherapyText = $data['other_therapy_text'][$index] ?? null;
+            
+                    $praxis->clinicTherapies()->updateOrCreate(
+                        ['therapy_id' => 99, 'others' => $index],
+                        ['therapy_text' => $otherTherapyText, 'therapy_title' => $otherTherapyTitle]
+                    );
+                }
+            }
+
+            DB::commit();
+            return $praxis;
+
+        } catch (Exception $exception) {
+            DB::rollback();
+            Log::error($exception->getMessage());
+            abort(500);
         }
-
-        $praxis->therapyOthers()->update([
-            'other_one' => $other_one,
-            'other_text_one' => $other_text_one,
-            'other_two' => $other_two,
-            'other_text_two' => $other_text_two,
-
-        ]);
     }
 }
 

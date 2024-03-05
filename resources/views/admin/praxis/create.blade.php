@@ -1,16 +1,6 @@
-@extends('layouts.user_admin')
+@extends('layouts.admin')
 
 @section('content')
-
-@if($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
 
 <form action="{{ route('admin.praxis.store') }}" method="post" enctype="multipart/form-data">
   @csrf
@@ -57,28 +47,14 @@
               <textarea name="therapy_text[{{ $therapy->id }}]" id="therapy_{{ $therapy->id }}" maxlength="255" class="w-full h-16 rounded-md border-1 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500 hidden"></textarea>
             </div>
           @endforeach
-        </div>
-        <div class="basis-1/3">
-          @foreach($therapies->skip(10)->take(10) as $therapy)
+          @for ($i = 0; $i < 3; $i++)
             <div class="flex text-sm flex-wrap gap-x-4 gap-y-3 items-center mb-6">
-              <input type="checkbox" name="therapy[]" value="{{ $therapy->id }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" data-textarea-id="{{ $therapy->id }}" id="checkbox_{{ $therapy->id }}" onchange="toggleTextarea(this)" />
-              <label for="checkbox_{{ $therapy->id }}" class="font-medium text-gray-900">{{ $therapy->therapy_title }}</label>
-              <textarea name="therapy_text[{{ $therapy->id }}]" id="therapy_{{ $therapy->id }}" maxlength="255" class="w-full h-16 rounded-md border-1 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500 hidden"></textarea>
+                <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"/>
+                <input type="text" name="other_therapy[{{ $i }}]" class="font-medium basis-3/5 rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-900 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500">
+                <textarea name="other_therapy_text[{{ $i }}]" maxlength="255" class="w-full h-16 rounded-md border-1 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500"></textarea>
             </div>
-          @endforeach
+          @endfor
         </div>
-        <div class="basis-1/3">
-          @foreach($therapies->skip(20)->take(10) as $therapy)
-            <div class="flex text-sm flex-wrap gap-x-4 gap-y-3 items-center mb-6">
-              <input type="checkbox" name="therapy[]" value="{{ $therapy->id }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" data-textarea-id="{{ $therapy->id }}" id="checkbox_{{ $therapy->id }}" onchange="toggleTextarea(this)" />
-              <label for="checkbox_{{ $therapy->id }}" class="font-medium text-gray-900">{{ $therapy->therapy_title }}</label>
-              <textarea name="therapy_text[{{ $therapy->id }}]" id="therapy_{{ $therapy->id }}" maxlength="255" class="w-full h-16 rounded-md border-1 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500 hidden"></textarea>
-            </div>
-          @endforeach
-          @include('components.form_checkbox_other', ['therapy_other' => 'other_one', 'therapy_other_text' => 'other_text_one'])
-          @include('components.form_checkbox_other', ['therapy_other' => 'other_two', 'therapy_other_text' => 'other_text_two'])
-        </div>
-      </div>
     </section>
 
     <div class="flex justify-end">

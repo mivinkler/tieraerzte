@@ -17,27 +17,27 @@ class Clinic extends Model
 
     public function clinicTherapies()
     {
-        return $this->hasMany(ClinicTherapy::class, 'clinic_id', 'id');
+        return $this->hasMany(ClinicTherapy::class);
     }
 
     public function focus() {
-        return $this->hasOne(Focus::class, 'clinic_id', 'id');
+        return $this->hasOne(Focus::class);
     }
 
     public function therapyOthers() {
-        return $this->hasOne(TherapyOther::class, 'clinic_id', 'id');
+        return $this->hasOne(TherapyOther::class);
     }
 
     public function text() {
-        return $this->hasOne(Text::class, 'clinic_id', 'id');
+        return $this->hasOne(Text::class);
     }
 
     public function images() {
-        return $this->hasOne(Image::class, 'clinic_id', 'id');
+        return $this->hasOne(Image::class);
     }
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->hasOne(User::class);
     }
 
 }

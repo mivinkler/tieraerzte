@@ -9,7 +9,6 @@ Route::get('/', function() {return 'привет';});
 Route::namespace('App\Http\Controllers\Main')->group(function () {
     Route::get('/search', 'IndexController')->name('praxis.index');
     Route::get('/praxis/{praxis}', 'ShowController')->name('main.praxis.show');
-
 });
 
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware('admin')->group(function () {
@@ -27,19 +26,24 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware('adm
         Route::post('/', 'UserStoreController')->name('admin.user.store');
         Route::get('/{user}/edit', 'UserEditController')->name('admin.user.edit');
         Route::patch('/{user}', 'UserUpdateController')->name('admin.user.update');
+        Route::delete('/user/{user}', 'UserDestroyController')->name('admin.user.delete');
     });
-
-
-   
 });
 
-// Route::prefix('user')->namespace('App\Http\Controllers\User')->middleware('praxis')->group(function () {
-//     Route::get('/profile/create', 'CreateController')->name('praxis.create');
-//     Route::post('/', 'StoreController')->name('praxis.store');
-//     Route::get('/{praxis}/edit_praxis', 'EditController')->name('praxis.edit');
-//     Route::patch('/{praxis}', 'UpdateController')->name('praxis.update');
-//     Route::get('/{praxis}/edit_profile', 'ProfileEditController')->name('praxis.profile.edit');
-// });
+Route::prefix('user')->namespace('App\Http\Controllers\User')->middleware('user')->group(function () {
+    Route::prefix('praxis')->namespace('Praxis')->group(function () {
+        Route::get('/create', 'CreateController')->name('praxis.create');
+        Route::post('/', 'StoreController')->name('praxis.store');
+        Route::get('/{praxis}/edit', 'EditController')->name('praxis.edit');
+        Route::patch('/{praxis}', 'UpdateController')->name('praxis.update');
+    });
+    Route::prefix('profile')->namespace('Profile')->group(function () {
+        Route::get('/create', 'CreateController')->name('profile.create');
+        Route::post('/', 'StoreController')->name('profile.store');
+        Route::get('/{user}/edit', 'EditController')->name('profile.edit');
+        Route::patch('/{user}', 'UpdateController')->name('profile.update');
+    });
+});
 
 Auth::routes();
 

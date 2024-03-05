@@ -49,39 +49,23 @@
     </form>
 </main>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var form = document.getElementById('myForm');
-        var title = form.querySelector('[name="title"]');
-        var postcode = form.querySelector('[name="postcode"]');
-        var checkboxes = form.querySelectorAll('input[name^="therapy_id"]');
-        var submitButton = form.querySelector('[type="submit"]');
-
-
-        function formSubmit() {
-            if (title.value.trim() === '' ) {
-                title.removeAttribute('name');
+   document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('myForm');
+    var inputs = form.querySelectorAll('input[name]');
+    
+    function formSubmit() {
+        inputs.forEach(function(input) {
+            if (input.value.trim() === '') {
+                input.removeAttribute('name');
             }
-
-            if (postcode.value.trim() === '') {
-                postcode.removeAttribute('name');
-            }
-
-            form.submit();
-        }
-
-        title.addEventListener('blur', formSubmit);
-
-        postcode.addEventListener('blur', formSubmit);
-
-        submitButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Предотвращаем стандартное поведение кнопки submit
-            formSubmit();
         });
+        form.submit();
+    }
 
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', formSubmit)
-        });
+    inputs.forEach(function(input) {
+        input.addEventListener('input', formSubmit);
     });
+});
 </script>
 
 
