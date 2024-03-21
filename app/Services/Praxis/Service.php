@@ -8,6 +8,9 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Arr;
+use App\Components\GeocodingClient;
+use Illuminate\Support\Str;
+
 
 class Service {
     public function store($data) 
@@ -15,6 +18,19 @@ class Service {
         try {
             DB::beginTransaction();
     
+            $name = $data['title'];
+
+            $slug = Str::slug($name);
+            $originalSlug = $slug;
+    
+            $counter = 0;
+            while (Clinic::where('slug', $slug)->exists()) {
+                $counter++;
+                $slug = $originalSlug . '-' . $counter;
+            }
+    
+            $data['slug'] = $slug;
+
             $praxisData = Arr::except($data, [
                 'text_aboutus', 
                 'text_one', 
@@ -23,10 +39,6 @@ class Service {
                 'therapy_text', 
                 'other_therapy', 
                 'other_therapy_text',
-                'other_one', 
-                'other_text_one', 
-                'other_two', 
-                'other_text_two'
             ]);
             $praxis = Clinic::create($praxisData);
     
@@ -75,6 +87,17 @@ class Service {
                 }
             }
     
+            $address = $data['street'] . ' ' . $data['house'] . ', ' . $data['locality'] . ', ' . $data['postcode'] . ', Germany';
+            $geocodingClient = new GeocodingClient();
+            $coordinates = $geocodingClient->getCoordinatesByAddress($address);
+    
+            if ($coordinates) {
+                $praxis->geoCoordinates()->create([
+                    'latitude' => $coordinates['latitude'],
+                    'longitude' => $coordinates['longitude'],
+                ]);
+            }
+
             DB::commit();
             return $praxis;
 

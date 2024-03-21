@@ -25,6 +25,7 @@ class FilterRequest extends FormRequest
             'title' => 'string',
             'street' => '',
             'postcode' => '',
+            'radius' => '',
             'locality' => '',
             'email' => '',
             'therapy_id' => '',

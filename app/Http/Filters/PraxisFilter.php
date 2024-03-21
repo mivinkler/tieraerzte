@@ -54,6 +54,15 @@ class PraxisFilter extends AbstractFilter
         $builder->where('locality', 'like', "%{$value}%");
     }
 
+    public function therapy_id(Builder $builder, $value)
+    {
+        foreach ($value as $therapyId) {
+            $builder->whereHas('clinicTherapies', function($b) use ($therapyId) {
+                $b->where('therapy_id', $therapyId);
+            });
+        }
+    }
+
     public function user(Builder $builder, $value)
     {
         $builder->whereHas('user', function ($query) use ($value) {
@@ -64,15 +73,6 @@ class PraxisFilter extends AbstractFilter
     public function email(Builder $builder, $value)
     {
         $builder->where('email', 'like', "%{$value}%");
-    }
-
-    public function therapy_id(Builder $builder, $value)
-    {
-        foreach ($value as $therapyId) {
-            $builder->whereHas('clinicTherapies', function($b) use ($therapyId) {
-                $b->where('therapy_id', $therapyId);
-            });
-        }
     }
 }
 

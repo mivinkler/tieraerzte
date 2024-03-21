@@ -23,13 +23,14 @@
                     <div class="font-semibold mb-2">Praxis</div>
                     <ul class="mb-8 flex flex-col gap-2">
                         <li><a href="{{ route('praxis.create')}}">Praxis Erstellen</a></li>
-                        <li><a href="{{ route('praxis.edit', Auth::user()->clinic->id) }}">Praxis Aktualisieren</a></li>
+                        @if(isset(Auth::user()->clinic->id)) {
+                            <li><a href="{{ route('praxis.edit', Auth::user()->clinic->id) }}">Praxis Aktualisieren</a></li>
+                        }
+                        @endif
                         <li>Praxis löschen</li>
                     </ul>
                     <div class="font-semibold mb-2">Profil</div>
                     <ul class="mb-6 flex flex-col gap-2">
-
-                        <li><a href="{{ route('profile.create')}}">Profil Erstellen</a></li>
                         <li><a href="{{ route('profile.edit', Auth::user()->id) }}">Profil Aktualisieren</a></li>
                         <li>Profil löschen</li>
                     </ul>

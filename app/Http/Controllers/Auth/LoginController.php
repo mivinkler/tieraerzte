@@ -6,6 +6,7 @@ use App\Http\Controllers\Main\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -41,11 +42,11 @@ class LoginController extends Controller
     
     protected function authenticated(Request $request, $user)
     {
-        if ($user->role === 'admin') 
+        if ($user->role == User::ROLE_ADMIN) 
         {
             return redirect()->route('admin.praxis.index');
         } 
-        if ($user->role === 'user')
+        if ($user->role == User::ROLE_USER)
         {
             return redirect()->route('praxis.create');
         }
@@ -53,7 +54,7 @@ class LoginController extends Controller
         return redirect($this->redirectTo);
     }
 
-    protected function logout(Request $request)
+    public function logout(Request $request)
     {
         $this->guard()->logout();
 

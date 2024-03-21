@@ -20,29 +20,7 @@
         <div class="mb-20">
             {{ optional($praxis->text)->text_one }}
         </div>
-        <div class="mb-24">
-            <div class="font-semibold mb-8 text-lg">
-                {{ optional($praxis->focus)->focus_headline }}
-            </div>
-            <div class="grid grid-cols-1 gap-x-16 gap-y-14 sm:grid-cols-2">
-                <div>
-                    <div class="font-semibold">{{ optional($praxis->focus)->focus_title_one }}</div>
-                    <div class="mt-3">{{ optional($praxis->focus)->focus_text_one }}</div>
-                </div>
-                <div>
-                    <div class="font-semibold">{{ optional($praxis->focus)->focus_title_two }}</div>
-                    <div class="mt-3">{{ optional($praxis->focus)->focus_text_two }}</div>
-                </div>
-                <div>
-                    <div class="font-semibold">{{ optional($praxis->focus)->focus_title_three }}</div>
-                    <div class="mt-3">{{ optional($praxis->focus)->focus_text_three }}</div>
-                </div>
-                <div>
-                    <div class="font-semibold">{{ optional($praxis->focus)->focus_title_four }}</div>
-                    <div class="mt-3">{{ optional($praxis->focus)->focus_text_four }}</div>
-                </div>
-            </div>
-        </div>
+        
         
         <div class="mb-20">
             {{ optional($praxis->text)->freitext_two }}
@@ -57,18 +35,7 @@
                 <div class="mb-4">{{ $therapy->therapy_text }}</div>
             @endforeach
         </div>
-        <div>
-            <div class="mb-4">
-                <div class="font-medium text-gray-900">{{ optional($praxis->therapyOthers)->other_one }}</div>
-                <div>{{ optional($praxis->therapyOthers)->other_text_one }}</div>
-            </div>
-            
-            <div class="mb-4">
-                <div class="font-medium text-gray-900">{{ optional($praxis->therapyOthers)->other_two }}</div>
-                <div>{{ optional($praxis->therapyOthers)->other_text_two }}</div>
-            </div>
-            
-        </div>
+        
     </div>
 
 

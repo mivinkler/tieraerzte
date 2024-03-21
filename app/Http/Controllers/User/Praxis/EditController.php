@@ -10,8 +10,10 @@ use App\Models\User;
 class EditController extends Controller 
 {
     public function __invoke(Clinic $praxis) {
+
         $therapies = Therapy::all();
         $users = User::all();
+        
         $otherTherapies = $praxis->clinicTherapies->where('therapy_id', 99);
 
         return view('user.praxis.update', compact('therapies', 'praxis', 'users', 'otherTherapies'));

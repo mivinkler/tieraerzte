@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Http\Controllers\Admin\User\BaseController;
+use App\Http\Controllers\Main\Controller;
 use App\Http\Requests\User\StoreRequest;
+use App\Mail\User\PasswordMail;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 
-class UserStoreController extends BaseController 
+class UserStoreController extends Controller 
 {
     public function __invoke(StoreRequest $request) { 
 
         $data = $request->validated();
 
-        $this->service->store($data);
+        $password = Str::random(8);
+        $data['password'] = Hash::make($password);
+
+        User::firstOrCreate(['email' => $data['email']], $data);
+        Mail::to($data['email'])->send(new PasswordMail($password));
 
         return redirect()->route('admin.user.index');
     }

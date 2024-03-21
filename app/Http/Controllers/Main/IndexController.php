@@ -14,10 +14,10 @@ class IndexController extends Controller
     public function __invoke(FilterRequest $request) {
 
         $data = $request->validated();
-
+        
         $filter = app()->make(MainFilter::class, ['queryParams' => array_filter($data)]);
 
-        $praxen = Clinic::filter($filter)->simplePaginate(10);
+        $praxen = Clinic::filter($filter)->Paginate(10);
 
         $therapies = Therapy::all();
 

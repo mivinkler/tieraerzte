@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tierärzte</title>
+    <title>{{ $seo->title_tag ?? 'Tierärzte' }}</title>
+    <meta name="description" content="{{ $seo->meta_description ?? 'Beschreibung der Tierarztpraxis' }}">
+    <meta property="og:title" content="{{ $seo->title_tag ?? 'Tierärzte' }}">
+    <meta property="og:description" content="{{ $seo->meta_description ?? 'Beschreibung der Tierarztpraxis' }}">
     @vite('resources/css/app.css')
 </head>
 

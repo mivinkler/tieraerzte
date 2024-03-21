@@ -40,4 +40,13 @@ class Clinic extends Model
         return $this->hasOne(User::class);
     }
 
+    public function geoCoordinates()
+    {
+        return $this->hasOne(GeoCoordinates::class);
+    }
+    
+    public function seo()
+    {
+        return $this->hasOne(Seo::class);
+    }
 }

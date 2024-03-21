@@ -39,4 +39,13 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+    public function redirectPath()
+    {
+        if (auth()->check()) {
+            return '/user/profile/'.auth()->user()->id.'/edit';
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+    }
 }

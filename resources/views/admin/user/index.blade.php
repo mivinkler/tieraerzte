@@ -67,7 +67,7 @@
                         {{ $user->name }}
                     </div>
                     <div class="px-2 w-[6rem]">
-                        {{ $user->role }}
+                        {{ $user->getRoles()[$user->role]}}
                     </div>
                     <div class="px-2 w-[14rem]">
                         {{ optional($user->clinic)->title }}
@@ -82,7 +82,7 @@
                         {{ $user->email }}
                     </div>
                     <div class="px-4 flex gap-4 absolute right-0 items-center">
-                        @if($user->role === 'user')
+                        @if($user->role === '1')
                             @if($user->clinic_id)
                                 <a href="{{ route('main.praxis.show', $user->clinic_id) }}" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="#71717a" fill-rule="evenodd" viewBox="0 0 122.88 68.18">

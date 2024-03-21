@@ -19,7 +19,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|min:6',
+            'role' => 'required|integer',
         ];
     }
 
@@ -28,15 +28,12 @@ class StoreRequest extends FormRequest
         return [
             'name.required' => 'Das Feld muss ausgefüllt werden.',
             'name.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'name.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
+            'name.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
 
             'email.required' => 'Das Feld muss ausgefüllt werden.',
             'email.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'email.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
-
-            'password.required' => 'Das Feld muss ausgefüllt werden.',
-            'password.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'password.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
+            'email.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
+            'email.unique' => 'Die E-Mail-Adresse ist bereits vergeben.',
         ];
     }
 }

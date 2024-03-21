@@ -8,7 +8,7 @@
     <section class="basis-5/7 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       @include('components.input_area', ['name' => 'title', 'label' => 'Praxis','width' => 'col-span-6'])
       @include('components.input_area', ['name' => 'street', 'label' => 'Strasse', 'width' => 'col-span-4'])
-      @include('components.input_area', ['name' => 'street-address', 'label' => 'Hausnummer', 'width' => 'col-span-2'])
+      @include('components.input_area', ['name' => 'house', 'label' => 'Hausnummer', 'width' => 'col-span-2'])
       @include('components.input_area', ['name' => 'postcode', 'label' => 'PLZ','width' => 'col-span-2'])
       @include('components.input_area', ['name' => 'locality', 'label' => 'Stadt','width' => 'col-span-4'])
       @include('components.input_area', ['name' => 'email', 'label' => 'Email','width' => 'col-span-3'])
@@ -28,10 +28,22 @@
       <div class="sm:col-span-6 text-sm">
         <label for="about_text" class="mb-6 block font-medium text-gray-900">Text über Praxis</label>
         <textarea id="about_text" name="text_aboutus" rows="3" maxlength="255" class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-600"></textarea>
+        
         <p class="my-4 text-gray-600">Schreiben Sie ein paar Sätze über sich.</p>
       </div>
     </section>
-
+    
+    <section>
+      <div class="w-full border h-48" id="editor"></div>
+      <script>
+          ClassicEditor
+              .create( document.querySelector( '#editor' ) )
+              .catch( error => {
+                  console.error( error );
+              } );
+      </script>
+    </section>
+    
     <section>
       <label for="about_text" class="mb-6 block font-medium text-gray-900">Text Body</label>
       <textarea name="text_one" rows="2" class="w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-600"></textarea>

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\User\Praxis;
 
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\User\Praxis\BaseController;
+use App\Http\Controllers\Main\BaseController;
 use App\Http\Requests\Praxis\StoreRequest;
-use App\Models\Clinic;
 
 
 class StoreController extends BaseController 

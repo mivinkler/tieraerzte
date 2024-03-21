@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Main\Controller;
 
-use App\Models\Therapy;
+use App\Models\User;
 
 
 
 class UserCreateController extends Controller 
 {
-    public function __invoke() {
-        $therapies = Therapy::all();
+    public function __invoke() 
+    {
+        $roles = User::getRoles();
 
-        return view('admin.user.create', compact('therapies'));
+        return view('admin.user.create', compact('roles'));
     }
 }
 

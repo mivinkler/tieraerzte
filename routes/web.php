@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function() {return 'привет';});
+Route::get('/home', [App\Http\Controllers\Main\HomeController::class, 'index'])->name('home');
 
 Route::namespace('App\Http\Controllers\Main')->group(function () {
     Route::get('/search', 'IndexController')->name('praxis.index');
-    Route::get('/praxis/{praxis}', 'ShowController')->name('main.praxis.show');
+    Route::get('/praxis/{slug}', 'ShowController')->name('praxis.show')->where('slug', '^(?!home$).*');
 });
 
-Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware('admin')->group(function () {
+Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware(['auth', 'admin'])->group(function () {
     Route::prefix('praxis')->namespace('Praxis')->group(function () {
         Route::get('/index', 'PraxisIndexController')->name('admin.praxis.index');
         Route::get('/create', 'PraxisCreateController')->name('admin.praxis.create');
@@ -30,7 +31,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware('adm
     });
 });
 
-Route::prefix('user')->namespace('App\Http\Controllers\User')->middleware('user')->group(function () {
+Route::prefix('user')->namespace('App\Http\Controllers\User')->middleware(['auth', 'user', 'verified'])->group(function () {
     Route::prefix('praxis')->namespace('Praxis')->group(function () {
         Route::get('/create', 'CreateController')->name('praxis.create');
         Route::post('/', 'StoreController')->name('praxis.store');
@@ -38,16 +39,12 @@ Route::prefix('user')->namespace('App\Http\Controllers\User')->middleware('user'
         Route::patch('/{praxis}', 'UpdateController')->name('praxis.update');
     });
     Route::prefix('profile')->namespace('Profile')->group(function () {
-        Route::get('/create', 'CreateController')->name('profile.create');
-        Route::post('/', 'StoreController')->name('profile.store');
         Route::get('/{user}/edit', 'EditController')->name('profile.edit');
         Route::patch('/{user}', 'UpdateController')->name('profile.update');
     });
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\Main\HomeController::class, 'index'])->name('home');
+Auth::routes(['verify' => true]);
 
 Route::get('/agb', [App\Http\Controllers\AgbController::class, 'index'])->name('agb.index');
 Route::get('/impressum', [App\Http\Controllers\ImpressumController::class, 'index'])->name('impressum.index');

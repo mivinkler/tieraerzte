@@ -41,19 +41,19 @@ class UpdateRequest extends FormRequest
         return [
             'title.required' => 'Das Feld muss ausgefüllt werden.',
             'title.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'title.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
+            'title.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
 
             'street.required' => 'Das Feld muss ausgefüllt werden.',
             'street.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'street.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
+            'street.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
                         
             'postcode.required' => 'Das Feld muss ausgefüllt werden.',
             'postcode.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'postcode.max' => 'Das Feld darf nicht länger als 10 Zeichen sein',
+            'postcode.max' => 'Das Feld darf nicht länger als 10 Zeichen sein.',
                         
             'locality.required' => 'Das Feld muss ausgefüllt werden.',
             'locality.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'locality.max' => 'Das Feld darf nicht länger als 100 Zeichen sein',
+            'locality.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
                         
             'tel.required' => 'Das Feld muss ausgefüllt werden.',
             'tel.string' => 'Das Feld muss eine Zeichenfolge sein.',

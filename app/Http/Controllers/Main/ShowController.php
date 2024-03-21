@@ -8,7 +8,10 @@ use App\Models\Clinic;
 
 class ShowController extends Controller
 {
-    public function __invoke(Clinic $praxis) {
-        return view('main.show', compact('praxis'));   
+    public function __invoke(Clinic $praxis, $slug)
+    {
+        $praxis = Clinic::where('slug', $slug)->firstOrFail();
+
+        return view('main.show', compact('praxis'));
     }  
 }  

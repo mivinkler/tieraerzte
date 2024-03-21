@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Praxis;
 
-use App\Http\Controllers\Admin\Praxis\BaseController;
+use App\Http\Controllers\Main\BaseController;
 use App\Http\Requests\Praxis\UpdateRequest;
 use App\Models\Clinic;
 

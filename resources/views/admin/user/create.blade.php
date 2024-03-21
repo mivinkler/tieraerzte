@@ -8,12 +8,18 @@
     <section class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
       @include('components.input_area', ['name' => 'name', 'label' => 'Name', 'width' => 'col-span-8'])
       @include('components.input_area', ['name' => 'email', 'label' => 'Email','width' => 'col-span-8'])
-      @include('components.input_area', ['name' => 'password', 'label' => 'Passwort','width' => 'col-span-6'])
+     
       <div class="sm:col-span-1 justify-end">
         <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
           <select id="role" name="role" class="w-full mt-2 ounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500">
-            <option>User</option>
-            <option>Admin</option>
+            @foreach ($roles as $id => $role)
+              <option value="{{ $id }}"
+              {{ $id == old('role_id') ? 'selected' : ''}}
+              > {{ $role }}</option> 
+            @endforeach
+            @error('role')
+              <div>{{ $message }}</div>
+            @enderror
           </select>
       </div>
     </section>

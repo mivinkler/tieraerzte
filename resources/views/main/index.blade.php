@@ -10,6 +10,7 @@
                 <div>
                     <input type="text" name="title" id="name_title" placeholder="Name der Praxis" value="{{ request('title') }}" class="rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500">
                     <input type="text" name="postcode" placeholder="PLZ" value="{{ request('postcode') }}" class="w-24 rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500">
+                    <input type="number" name="radius" placeholder="Radius in km" value="{{ request('radius') }}" class="w-24 rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500">
                     <button type="submit" class="object-right rounded-md bg-indigo-600 px-3 py-1.5 ml-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Suchen</button>
                 </div>             
             </section>
@@ -31,20 +32,24 @@
             </section>
 
             <section name="filter_result" class="basis-3/4">
-            @forelse($praxen as $praxis)
+                @forelse($praxen as $praxis)
                     <div class="my-6 p-4 border rounded border-gray-100 bg-sky-50/25">
-                        <a href="{{ route('main.praxis.show', $praxis->id) }}">
+                        <a href="{{ route('praxis.show', $praxis->slug) }}">
                             <div class="font-medium">{{ $praxis->title }}</div>
                             <div class="text-sm">{{ $praxis->street }}</div>
                             <div class="text-sm">{{ $praxis->postcode }} {{ $praxis->locality }}</div>         
                             <div class="pt-4">{{ optional($praxis->text)->about_text }}</div>            
                         </a>
-                    </div>      
+                    </div>  
+
                 @empty
                     <p>Keine Ergebnisse gefunden</p>
                 @endforelse 
+                {{ $praxen->links() }}    
             </section>
+            <div>
 
+            </div>
         </div>
     </form>
 </main>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Praxis;
 
-use App\Http\Controllers\Admin\Praxis\BaseController;
+use App\Http\Controllers\Main\Controller;
 use App\Models\Clinic;
 
-class PraxisDestroyController extends BaseController
+class PraxisDestroyController extends Controller
 {
     public function __invoke(Clinic $praxis) 
     {

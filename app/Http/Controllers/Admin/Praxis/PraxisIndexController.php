@@ -6,7 +6,6 @@ use App\Http\Filters\PraxisFilter;
 use App\Http\Requests\Praxis\FilterRequest;
 use App\Models\Clinic;
 use App\Models\Therapy;
-use App\Models\User;
 use App\Http\Controllers\Main\Controller;
 
 

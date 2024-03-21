@@ -8,7 +8,9 @@ use App\Models\User;
 class UserEditController extends Controller 
 {
     public function __invoke(User $user) {
+
+        $roles = User::getRoles();
         
-        return view('admin.user.update', compact('user'));
+        return view('admin.user.update', compact('user', 'roles'));
     }
 }
