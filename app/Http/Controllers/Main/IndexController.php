@@ -12,15 +12,22 @@ use App\Http\Controllers\Main\Controller;
 class IndexController extends Controller
 {
     public function __invoke(FilterRequest $request) {
-
+      
         $data = $request->validated();
-        
+
         $filter = app()->make(MainFilter::class, ['queryParams' => array_filter($data)]);
 
-        $praxen = Clinic::filter($filter)->Paginate(10);
+        $praxen = Clinic::select('id', 'title', 'street', 'house', 'postcode', 'locality', 'slug')
+            ->filter($filter)
+            ->with(['therapyClinics' => function ($query) {
+                $query->select('clinic_id', 'therapy_id', 'therapy_title', 'therapy_text');
+            }])
+            ->with(['images' => function ($query) {
+                $query->select('clinic_id', 'foto_path');
+            }])->paginate(10);
 
         $therapies = Therapy::all();
-
+ 
         $selectedTherapies = $request->input('therapy_id', []);
 
         return view('main.index', compact('praxen', 'therapies', 'selectedTherapies'));

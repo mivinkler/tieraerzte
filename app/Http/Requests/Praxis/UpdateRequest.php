@@ -19,20 +19,23 @@ class UpdateRequest extends FormRequest
         return [
             'title' => 'required|string|max:100',
             'street' => 'required|string|max:100',
+            'house' => 'required|string|max:10',
             'postcode' => 'required|string|max:10',
             'locality' => 'required|string|max:100',
             'tel' => 'nullable|string|max:20',
-            'text_aboutus' => 'nullable|string|max:255',
-            'text_one' => 'nullable|string|max:255',
+            'text_aboutus' => 'nullable|string|max:500',
+            'text_one' => 'nullable|string|max:2000',
             'image' => 'nullable|mimes:jpg,jpeg,png',
             'therapy' => 'array',
             'therapy.*' => 'exists:therapies,id',
             'therapy_text' => 'array',
             'therapy_text.*' => 'nullable|string|max:255',
-            'other_therapy' => 'array',
-            'other_therapy.*' => 'nullable|string|max:100',
-            'other_therapy_text' => 'array',
-            'other_therapy_text.*' => 'nullable|string|max:255',
+            'therapy_other' => 'array',
+            'therapy_other.*' => 'nullable|string|max:100',
+            'therapy_other_text' => 'array',
+            'therapy_other_text.*' => 'nullable|string|max:255',
+            'therapy_other_id' => 'array',
+            'therapy_other_id.*' => 'nullable|numeric',
         ];
     }
 
@@ -46,6 +49,10 @@ class UpdateRequest extends FormRequest
             'street.required' => 'Das Feld muss ausgefüllt werden.',
             'street.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'street.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
+
+            'home.required' => 'Das Feld muss ausgefüllt werden.',
+            'home.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'home.max' => 'Das Feld darf nicht länger als 10 Zeichen sein.',
                         
             'postcode.required' => 'Das Feld muss ausgefüllt werden.',
             'postcode.string' => 'Das Feld muss eine Zeichenfolge sein.',
@@ -60,10 +67,10 @@ class UpdateRequest extends FormRequest
             'tel.max' => 'Das Feld darf nicht länger als 20 Zeichen sein.',
                         
             'text_aboutus.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_aboutus.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
+            'text_aboutus.max' => 'Das Feld darf nicht länger als 500 Zeichen sein.',
                         
             'text_one.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_one.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
+            'text_one.max' => 'Das Feld darf nicht länger als 2000 Zeichen sein.',
                         
             'image.mimes' => 'Das Feld muss ein Bild im Format jpg, jpeg oder png sein.',
                         

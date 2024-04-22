@@ -11,6 +11,7 @@ use App\Http\Controllers\Main\Controller;
 
 class PraxisIndexController extends Controller
 {
+
     public function __invoke(FilterRequest $request) {
 
         $data = $request->validated();
@@ -23,6 +24,6 @@ class PraxisIndexController extends Controller
 
         $selectedTherapies = $request->input('therapy_id', []);
 
-        return view('admin.praxis.index', compact('praxen', 'therapies', 'selectedTherapies'));
+        return view('admin.praxis.praxis_index', compact('praxen', 'therapies', 'selectedTherapies'));
     }   
 }

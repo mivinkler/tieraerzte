@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import plugin from 'tailwindcss/plugin';
+
 export default {
   content: [
     "./resources/**/*.blade.php",
@@ -8,7 +9,6 @@ export default {
   theme: {
     extend: {
       container: {
-        padding: '1rem',
         center: true,
         screens: {
           sm: '100%',
@@ -26,17 +26,27 @@ export default {
         '6/7': '85.7142857%',
       },
       gridTemplateRows: {
-        // Simple 8 row grid
         '7': 'repeat(7, minmax(0, 1fr))',
         '8': 'repeat(8, minmax(0, 1fr))',
         '9': 'repeat(9, minmax(0, 1fr))',
         '10': 'repeat(10, minmax(0, 1fr))',
       }
     },
-  plugins: [],
-  }
+  },
+  plugins: [
+    plugin(function({ addComponents }) {
+      const newUtilities = {
+        '.toggle-textarea': {
+          '@apply relative': {},
+          'input[type="checkbox"]:checked ~ textarea': {
+            '@apply block': {},
+          },
+          'textarea': {
+            '@apply hidden': {},
+          }
+        }
+      };
+      addComponents(newUtilities);
+    })
+  ],
 }
-
-
-
-

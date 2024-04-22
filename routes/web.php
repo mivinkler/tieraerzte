@@ -3,48 +3,52 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\Main\HomeController;
+use App\Http\Controllers\Admin\Praxis\PraxisIndexController;
+use App\Http\Controllers\Admin\Praxis\PraxisCreateController;
+use App\Http\Controllers\Admin\Praxis\PraxisStoreController;
+use App\Http\Controllers\Admin\Praxis\PraxisEditController;
+use App\Http\Controllers\Admin\Praxis\PraxisUpdateController;
+use App\Http\Controllers\Admin\Praxis\PraxisDestroyController;
+use App\Http\Controllers\Admin\User\UserIndexController;
+use App\Http\Controllers\Admin\User\UserCreateController;
+use App\Http\Controllers\Admin\User\UserStoreController;
+use App\Http\Controllers\Admin\User\UserEditController;
+use App\Http\Controllers\Admin\User\UserUpdateController;
+use App\Http\Controllers\Admin\User\UserDestroyController;
+use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Main\ShowController;
+use App\Http\Controllers\AgbController;
+use App\Http\Controllers\ImpressumController;
+
 
 Route::get('/', function() {return 'привет';});
-Route::get('/home', [App\Http\Controllers\Main\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::namespace('App\Http\Controllers\Main')->group(function () {
-    Route::get('/search', 'IndexController')->name('praxis.index');
-    Route::get('/praxis/{slug}', 'ShowController')->name('praxis.show')->where('slug', '^(?!home$).*');
-});
-
-Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::prefix('praxis')->namespace('Praxis')->group(function () {
-        Route::get('/index', 'PraxisIndexController')->name('admin.praxis.index');
-        Route::get('/create', 'PraxisCreateController')->name('admin.praxis.create');
-        Route::post('/', 'PraxisStoreController')->name('admin.praxis.store');
-        Route::get('/{praxis}/edit', 'PraxisEditController')->name('admin.praxis.edit');
-        Route::patch('/{praxis}', 'PraxisUpdateController')->name('admin.praxis.update');
-        Route::delete('/praxis/{praxis}', 'PraxisDestroyController')->name('admin.praxis.delete');
+Route::prefix('admin')->group(function () {
+    Route::prefix('praxis')->group(function () {
+        Route::get('/index', [PraxisIndexController::class, '__invoke'])->name('admin.praxis.index');
+        Route::get('/create', [PraxisCreateController::class, '__invoke'])->name('admin.praxis.create');
+        Route::post('/', [PraxisStoreController::class, '__invoke'])->name('admin.praxis.store');
+        Route::get('/{praxis}/edit', [PraxisEditController::class, '__invoke'])->name('admin.praxis.edit');
+        Route::patch('/{praxis}', [PraxisUpdateController::class, '__invoke'])->name('admin.praxis.update');
+        Route::delete('/praxis/delete/{praxis}', [PraxisDestroyController::class, '__invoke'])->name('admin.praxis.delete');
     });
-    Route::prefix('user')->namespace('User')->group(function () {
-        Route::get('/index', 'UserIndexController')->name('admin.user.index');
-        Route::get('/create', 'UserCreateController')->name('admin.user.create');
-        Route::post('/', 'UserStoreController')->name('admin.user.store');
-        Route::get('/{user}/edit', 'UserEditController')->name('admin.user.edit');
-        Route::patch('/{user}', 'UserUpdateController')->name('admin.user.update');
-        Route::delete('/user/{user}', 'UserDestroyController')->name('admin.user.delete');
+    Route::prefix('user')->group(function () {
+        Route::get('/index', [UserIndexController::class, '__invoke'])->name('admin.user.index');
+        Route::post('/', [UserStoreController::class, '__invoke'])->name('admin.user.store');
+        Route::get('/create', [UserCreateController::class, '__invoke'])->name('admin.user.create');
+        Route::get('/{user}/edit', [UserEditController::class, '__invoke'])->name('admin.user.edit');
+        Route::patch('/{user}', [UserUpdateController::class, '__invoke'])->name('admin.user.update');
+        Route::delete('/user/delete/{user}', [UserDestroyController::class, '__invoke'])->name('admin.user.delete');
     });
 });
 
-Route::prefix('user')->namespace('App\Http\Controllers\User')->middleware(['auth', 'user', 'verified'])->group(function () {
-    Route::prefix('praxis')->namespace('Praxis')->group(function () {
-        Route::get('/create', 'CreateController')->name('praxis.create');
-        Route::post('/', 'StoreController')->name('praxis.store');
-        Route::get('/{praxis}/edit', 'EditController')->name('praxis.edit');
-        Route::patch('/{praxis}', 'UpdateController')->name('praxis.update');
-    });
-    Route::prefix('profile')->namespace('Profile')->group(function () {
-        Route::get('/{user}/edit', 'EditController')->name('profile.edit');
-        Route::patch('/{user}', 'UpdateController')->name('profile.update');
-    });
-});
+
+Route::get('/search', [IndexController::class, '__invoke'])->name('praxis.search.index');
+Route::get('/praxis/{slug}', [ShowController::class, '__invoke'])->name('praxis.show')->where('slug', '^(?!home$).*');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/agb', [App\Http\Controllers\AgbController::class, 'index'])->name('agb.index');
-Route::get('/impressum', [App\Http\Controllers\ImpressumController::class, 'index'])->name('impressum.index');
+Route::get('/agb', [AgbController::class, 'index'])->name('agb.index');
+Route::get('/impressum', [ImpressumController::class, 'index'])->name('impressum.index');

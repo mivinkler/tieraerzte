@@ -18,6 +18,6 @@ class UserIndexController extends Controller
 
         $users = User::filter($filter)->simplePaginate(50);
 
-        return view('admin.user.index', compact('users'));
+        return view('admin.user.user_index', compact('users'));
     }
 }

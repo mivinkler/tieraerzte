@@ -57,7 +57,7 @@ class PraxisFilter extends AbstractFilter
     public function therapy_id(Builder $builder, $value)
     {
         foreach ($value as $therapyId) {
-            $builder->whereHas('clinicTherapies', function($b) use ($therapyId) {
+            $builder->whereHas('therapyClinics', function($b) use ($therapyId) {
                 $b->where('therapy_id', $therapyId);
             });
         }

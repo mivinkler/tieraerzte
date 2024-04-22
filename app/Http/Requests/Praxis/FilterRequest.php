@@ -22,15 +22,15 @@ class FilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => '',
-            'title' => 'string',
-            'street' => '',
-            'postcode' => '',
-            'radius' => '',
-            'locality' => '',
-            'user' => '',
-            'email' => '',
-            'therapy_id' => '',
+            'id' => 'numeric',
+            'title' => 'string|nullable',
+            'street' => 'string|nullable',
+            'postcode' => 'string|nullable',
+            'radius' => 'nullable',
+            'locality' => 'string|nullable',
+            'user' => 'string|nullable',
+            'email' => 'string|nullable',
+            'therapy_id' => 'nullable',
         ];
     }
 }

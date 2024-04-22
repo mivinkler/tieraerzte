@@ -9,11 +9,12 @@ use App\Models\Clinic;
 
 class PraxisUpdateController extends BaseController 
 {
-    public function __invoke(UpdateRequest $request, Clinic $praxis) {  
-            
+    public function __invoke(UpdateRequest $request, Clinic $praxis) {
+
         $data = $request->validated();
+
         $this->service->update($praxis, $data);
 
-        return redirect()->route('main.praxis.show', ['praxis' => $praxis->id]);
+        return redirect()->route('praxis.show', $praxis->slug);
     }
 }

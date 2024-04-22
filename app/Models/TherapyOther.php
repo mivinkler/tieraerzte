@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class TherapyOther extends Model
 {
     use HasFactory;
-    protected $table = 'therapies_others'; 
-
+    protected $table = 'therapies_others';
     protected $guarded = [];
 
-    public function clinic(){
+
+    public function clinic()
+    {
         return $this->belongsTo(Clinic::class);
     }
 }

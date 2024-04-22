@@ -15,29 +15,26 @@ class Clinic extends Model
     protected $table = 'clinics';
     protected $guarded = [];
 
-    public function clinicTherapies()
-    {
-        return $this->hasMany(ClinicTherapy::class);
-    }
-
-    public function focus() {
-        return $this->hasOne(Focus::class);
-    }
-
-    public function therapyOthers() {
-        return $this->hasOne(TherapyOther::class);
-    }
-
-    public function text() {
-        return $this->hasOne(Text::class);
-    }
-
+    public function user() {
+        return $this->hasOne(User::class);
+    }  
+    
     public function images() {
         return $this->hasOne(Image::class);
     }
+    
+    public function text() {
+        return $this->hasOne(Text::class);
+    }
+    
+    public function therapyClinics()
+    {
+        return $this->hasMany(TherapyClinic::class);
+    }
 
-    public function user() {
-        return $this->hasOne(User::class);
+    public function therapyOthers()
+    {
+        return $this->hasMany(TherapyOther::class);
     }
 
     public function geoCoordinates()

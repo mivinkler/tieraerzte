@@ -13,9 +13,9 @@ class Therapy extends Model
     protected $table = 'therapies';
     protected $guarded = [];
 
-    public function clinicTherapy()
+    public function TherapyClinic()
     {
-        return $this->belongsTo(ClinicTherapy::class);
+        return $this->belongsTo(TherapyClinic::class);
     }
 
 }

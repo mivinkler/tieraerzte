@@ -4,7 +4,6 @@ namespace App\Http\Filters;
 use App\Http\Filters\AbstractFilter;
 use Illuminate\Database\Eloquent\Builder;
 use App\Components\GeocodingClient;
-use Illuminate\Support\Facades\Log;
 
 class MainFilter extends AbstractFilter
 {
@@ -51,7 +50,7 @@ class MainFilter extends AbstractFilter
     public function therapy_id(Builder $builder, $value)
     {
         foreach ($value as $therapyId) {
-            $builder->whereHas('clinicTherapies', function($b) use ($therapyId) {
+            $builder->whereHas('therapyClinics', function($b) use ($therapyId) {
                 $b->where('therapy_id', $therapyId);
             });
         }

@@ -13,16 +13,16 @@
 <body>
     <header class="h-20">
         <div class="fixed w-full h-20 top-0 border-b border-gray-200 bg-sky-50">
-            <nav class="container h-full flex items-center justify-between">
+            <nav class="container h-full flex items-center justify-between p-4">
                 <div>
                     <a href="#" class="flex items-center gap-x-2">
                         
-                        <span>Your Company</span>    
+                        <span>Healpets</span>    
                     </a>
                 </div>
                 <div class="flex gap-x-12 text-sm font-semibold text-gray-900">
-                    <a href="{{ route('praxis.index')}}">Tierarzt suchen</a>
-                    <a href="{{ route('praxis.index')}}">Kontakt</a>
+                    <a href="{{ route('admin.praxis.index')}}">Tierarzt suchen</a>
+                    <a href="{{ route('admin.praxis.index')}}">Kontakt</a>
                 </div>
                 <div class="flex gap-6 h-8 items-center">
                     @include('components.icone_login')

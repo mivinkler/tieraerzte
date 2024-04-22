@@ -19,6 +19,7 @@ class UserStoreController extends Controller
 
         $password = Str::random(8);
         $data['password'] = Hash::make($password);
+        $data['role'] = 1;
 
         User::firstOrCreate(['email' => $data['email']], $data);
         Mail::to($data['email'])->send(new PasswordMail($password));

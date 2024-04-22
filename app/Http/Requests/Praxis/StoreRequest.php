@@ -23,17 +23,27 @@ class StoreRequest extends FormRequest
             'postcode' => 'required|string|max:10',
             'locality' => 'required|string|max:100',
             'tel' => 'nullable|string|max:20',
-            'text_aboutus' => 'nullable|string|max:255',
-            'text_one' => 'nullable|string|max:255',
+
+            'text_aboutus' => 'nullable|string|max:500',
+            'title_one' => 'nullable|string|max:100',
+            'text_one' => 'nullable|string|max:1000',
+            'title_two' => 'nullable|string|max:100',
+            'text_two' => 'nullable|string|max:1000',
+            'title_three' => 'nullable|string|max:100',
+            'text_three' => 'nullable|string|max:1000',
+            'text_sitebar' => 'nullable|string|max:255',
             'image' => 'nullable|mimes:jpg,jpeg,png',
+
             'therapy' => 'array',
             'therapy.*' => 'exists:therapies,id',
             'therapy_text' => 'array',
             'therapy_text.*' => 'nullable|string|max:255',
-            'other_therapy' => 'array',
-            'other_therapy.*' => 'nullable|string|max:100',
-            'other_therapy_text' => 'array',
-            'other_therapy_text.*' => 'nullable|string|max:255',
+            'therapy_other' => 'array',
+            'therapy_other.*' => 'nullable|string|max:100',
+            'therapy_other_text' => 'array',
+            'therapy_other_text.*' => 'nullable|string|max:255',
+            'therapy_other_id' => 'array',
+            'therapy_other_id.*' => 'nullable|numeric',
         ];
     }
 
@@ -65,10 +75,25 @@ class StoreRequest extends FormRequest
             'tel.max' => 'Das Feld darf nicht länger als 20 Zeichen sein.',
                         
             'text_aboutus.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_aboutus.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
-                        
+            'text_aboutus.max' => 'Das Feld darf nicht länger als 500 Zeichen sein.',
+              
+            'title_one.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'title_one.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
             'text_one.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_one.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
+            'text_one.max' => 'Das Feld darf nicht länger als 1000 Zeichen sein.',
+
+            'title_two.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'title_two.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
+            'text_two.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'text_two.max' => 'Das Feld darf nicht länger als 1000 Zeichen sein.',
+
+            'title_three.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'title_three.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
+            'text_three.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'text_three.max' => 'Das Feld darf nicht länger als 1000 Zeichen sein.',
+
+            'text_sitebar.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'text_sitebar.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
                         
             'image.mimes' => 'Das Feld muss ein Bild im Format jpg, jpeg oder png sein.',
                         
@@ -77,9 +102,11 @@ class StoreRequest extends FormRequest
 
             'other_therapy.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'other_therapy.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
-
             'other_therapy_text.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'other_therapy_text.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
+
+            'branch_text.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'branch_text.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
         ];
     }
 }
