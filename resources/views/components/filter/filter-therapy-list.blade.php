@@ -1,7 +1,7 @@
-<div class="space-y-4" id="filter-section-0">
+<div class="space-y-3" id="filter-section-0">
     @foreach($therapies as $therapy)
         <div class="flex items-center">
-            <input class="h-[14px] w-[14px] rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+            <input class="h-[12px] w-[12px] rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                 type="checkbox"
                 name="therapy_id[]"
                 id="checkbox_{{ $therapy->id }}"

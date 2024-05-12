@@ -18,11 +18,13 @@ use App\Http\Controllers\Admin\User\UserUpdateController;
 use App\Http\Controllers\Admin\User\UserDestroyController;
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Main\ShowController;
+use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\AgbController;
 use App\Http\Controllers\ImpressumController;
 
 
-Route::get('/', function() {return 'привет';});
+
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function () {
@@ -46,9 +48,13 @@ Route::prefix('admin')->group(function () {
 
 
 Route::get('/search', [IndexController::class, '__invoke'])->name('praxis.search.index');
-Route::get('/praxis/{slug}', [ShowController::class, '__invoke'])->name('praxis.show')->where('slug', '^(?!home$).*');
+Route::get('/praxis/{slug}/{id}', [ShowController::class, '__invoke'])->name('praxis.show');
+// Route::get('/praxis/{slug}', [ShowController::class, '__invoke'])->name('praxis.show')->where('slug', '^(?!home$).*');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/agb', [AgbController::class, 'index'])->name('agb.index');
-Route::get('/impressum', [ImpressumController::class, 'index'])->name('impressum.index');
+// Route::get('/agb', [AgbController::class, 'index'])->name('agb.index');
+Route::get('/agb', function () { return view('agb'); })->name('agb');
+Route::get('/impressum', function () { return view('impressum'); })->name('impressum');
+Route::get('/service', function () { return view('service'); })->name('service');
+Route::get('/', [MainController::class, 'index'])->name('main');

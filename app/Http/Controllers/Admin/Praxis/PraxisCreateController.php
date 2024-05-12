@@ -14,7 +14,7 @@ class PraxisCreateController extends Controller
         $therapies = Therapy::all();
         $roles = User::getRoles();
 
-        $layout = (Auth::user()->role === User::ROLE_ADMIN) ? 'layouts.admin' : 'layouts.user';
+        $layout = (Auth::user() && Auth::user()->role === User::ROLE_ADMIN) ? 'layouts.admin' : 'layouts.user';
         
         return view('admin.praxis.praxis_form', compact('layout', 'therapies', 'roles'));
     }

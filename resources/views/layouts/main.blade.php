@@ -12,10 +12,10 @@
 
 <body>
     <header class="h-20">
-        <div class="fixed w-full h-20 top-0 border-b border-gray-200 bg-sky-50">
-            <nav class="container h-full flex items-center justify-between p-4">
+        <div class="fixed w-full h-20 top-0 border-b border-gray-200 bg-indigo-300">
+            <nav class="container w-[1280px] h-full flex items-center justify-between p-4">
                 <div>
-                    <a href="#" class="flex items-center gap-x-2">
+                    <a href="{{ route('main')}}" class="flex items-center gap-x-2">
                         
                         <span>Healpets</span>    
                     </a>
@@ -27,7 +27,7 @@
                 <div class="flex gap-6 h-8 items-center">
                     @include('components.icone_login')
                     <button class="bg-transparent hover:bg-blue-500 font-semibold text-sm hover:text-white py-1 px-2 border border-zinc-300 text-zinc-600 hover:border-transparent rounded">
-                        <a href="">
+                        <a href="{{ route('service')}}">
                             Für Tierärzte
                         </a>
                     </button>          
@@ -47,10 +47,10 @@
         </span>
         <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
             <li>
-                <a href="{{ route('agb.index')}}" class="mr-4 hover:underline md:mr-6">AGB</a>
+                <a href="{{ route('agb')}}" class="mr-4 hover:underline md:mr-6">AGB</a>
             </li>
             <li>
-                <a href="{{ route('impressum.index')}}" class="mr-4 hover:underline md:mr-6">Impressum</a>
+                <a href="{{ route('impressum')}}" class="mr-4 hover:underline md:mr-6">Impressum</a>
             </li>
         </ul>
     </footer>

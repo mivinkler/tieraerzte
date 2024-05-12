@@ -7,31 +7,20 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {
-      container: {
-        center: true,
-        screens: {
-          sm: '100%',
-          md: '100%',
-          lg: '1200px',
-          xl: '1200px',
-        },
-      },
-      flexBasis: {
-        '1/7': '14.2857143%',
-        '2/7': '28.5714286%',
-        '3/7': '42.8571429%',
-        '4/7': '57.1428571%',
-        '5/7': '71.4285714%',
-        '6/7': '85.7142857%',
-      },
-      gridTemplateRows: {
-        '7': 'repeat(7, minmax(0, 1fr))',
-        '8': 'repeat(8, minmax(0, 1fr))',
-        '9': 'repeat(9, minmax(0, 1fr))',
-        '10': 'repeat(10, minmax(0, 1fr))',
-      }
+    container: {
+      center: true,
+      padding: '1rem',
     },
+    fontSize: {
+      sm: ['16px', '28px'],
+      base: ['17px', '28px'],
+      lg: ['20px', '28px'],
+      xl: ['22px', '32px'],
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+    }
   },
   plugins: [
     plugin(function({ addComponents }) {

@@ -9,15 +9,18 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Arr;
 use App\Components\GeocodingClient;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Service {
-    public function store($data) {
+    public function createClinic($data) {
         return $this->processPraxisData($data, new Clinic());
     }
 
-    public function update($praxis, $data) {
+    public function updateClinic($praxis, $data) {
         return $this->processPraxisData($data, $praxis);
     }
 
@@ -40,14 +43,14 @@ class Service {
     }
 
     protected function prepareBasicData($data) {
-        $slug = $this->generateSlug($data['title'], Clinic::class);
+        $slug = Str::slug($data['title']);
         $basicData = Arr::except($data, [
             'text_aboutus', 'title_one', 'text_one', 'title_two', 'text_two', 'title_three', 'text_three', 'text_sitebar',
-            'therapy', 'therapy_text', 'therapy_other_id', 'therapy_other', 'therapy_other_text', 
+            'therapy', 'therapy_text', 'other_id', 'other_title', 'other_text', 
             'image'
         ]);
         $basicData['slug'] = $slug;
-
+    
         return $basicData;
     }
 
@@ -59,15 +62,6 @@ class Service {
         $this->handleGeoCoordinates($praxis, $data);
     }
 
-    protected function generateSlug($title, $model) {
-        $slug = Str::slug($title);
-        $counter = 1;
-        while ($model::where('slug', $slug)->exists()) {
-            $slug = Str::slug($title) . '-' . $counter++;
-        }
-        return $slug;
-    }
-
     protected function handleTexts($praxis, $data) {
         foreach (['text_aboutus', 'title_one', 'text_one', 'title_two', 'text_two', 'title_three', 'text_three', 'text_sitebar'] as $field) {
             if (isset($data[$field])) {
@@ -76,10 +70,34 @@ class Service {
         }
     }
     
+    // protected function handleImage($praxis, $data) {
+    //     if (isset($data['image'])) {
+    //         $image = $data['image'];
+    //         $name = md5(Carbon::now() . '_' . $image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();
+            
+    //         // Сохраняем файл в директорию 'images' на диске 'public' и задаем имя файла
+    //         /** @var \Illuminate\Filesystem\FilesystemAdapter $disk */
+    //         $disk = Storage::disk('public');
+    //         $path = $disk->putFileAs('images', $image, $name);
+    
+    //         // Обновляем или создаем запись в базе данных с путем к файлу
+    //         $praxis->images()->updateOrCreate(['clinic_id' => $praxis->id], ['path' => $path, 'url' => ('/storage/' . $path)]);
+    //     }
+    // }
+
     protected function handleImage($praxis, $data) {
         if (isset($data['image'])) {
-            $imagePath = $data['image']->store('images', 'public');
-            $praxis->images()->updateOrCreate(['clinic_id' => $praxis->id], ['foto_path' => $imagePath]);
+            $img = $data['image'];
+            $name = md5(Carbon::now() . '_' . $img->getClientOriginalName()) . '.' . $img->getClientOriginalExtension();
+            
+            // Сохраняем файл в директорию 'images' на диске 'public' и задаем имя файла
+            $path = 'images/' . $name;
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($img);
+            $image->resize(200, 200)->save(storage_path('app/public/images/' . $name));
+            
+            // Обновляем или создаем запись в базе данных с путем к файлу
+            $praxis->images()->updateOrCreate(['clinic_id' => $praxis->id], ['path' => $path, 'url' => ('/storage/' . $path)]);
         }
     }
     
@@ -120,7 +138,7 @@ class Service {
                     'therapy_id' => $therapyId,
                     'therapy_text' => $therapyText,
                     'therapy_title' => $therapy->therapy_title,
-                    'category_id' => $therapy->category,
+                    'category' => $therapy->category,
                 ]);
             }
         }
@@ -130,19 +148,19 @@ class Service {
     }
 
     protected function handleOtherTherapies($praxis, $data) {
-        if (empty($data['therapy_other'])) {
+        if (empty($data['other_title'])) {
             return;
         }
         $processedIds = [];
     
-        foreach ($data['therapy_other'] as $index => $therapyData) {
+        foreach ($data['other_title'] as $index => $therapyData) {
             if (!empty($therapyData)) {
                 $category = $index < 3 ? 1 : 2;  // Если индекс меньше 3, категория будет 1, иначе 2
                 $therapyOther = $praxis->therapyOthers()->updateOrCreate(
-                    ['therapy_other_id' => $index],
+                    ['other_id' => $index],
                     [
-                        'therapy_other' => $therapyData,
-                        'therapy_other_text' => $data['therapy_other_text'][$index] ?? '',
+                        'other_title' => $therapyData,
+                        'other_text' => $data['other_text'][$index] ?? '',
                         'category' => $category,
                     ]
                 );

@@ -23,13 +23,13 @@ class FilterRequest extends FormRequest
     {
         return [
             'id' => 'numeric',
-            'title' => 'string|nullable',
-            'street' => 'string|nullable',
-            'postcode' => 'string|nullable',
-            'radius' => 'nullable',
-            'locality' => 'string|nullable',
-            'user' => 'string|nullable',
-            'email' => 'string|nullable',
+            'title' => 'string|nullable|max:100',
+            'street' => 'string|nullable|max:100',
+            'postcode' => 'string|nullable|max:10',
+            'radius' => 'numeric|nullable|max:10',
+            'locality' => 'string|nullable|max:100',
+            'user' => 'string|nullable|max:100',
+            'email' => 'string|email|nullable|max:100',
             'therapy_id' => 'nullable',
         ];
     }

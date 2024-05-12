@@ -22,12 +22,12 @@ class FilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string|nullable',
-            'street' => 'string|nullable',
-            'postcode' => 'string|nullable',
-            'radius' => 'numeric|nullable',
-            'locality' => 'string|nullable',
-            'email' => 'string|nullable',
+            'title' => 'string|nullable|max:100',
+            'street' => 'string|nullable|max:100',
+            'postcode' => 'string|nullable|max:10',
+            'radius' => 'numeric|nullable|max:10',
+            'locality' => 'string|nullable|max:100',
+            'email' => 'string|nullable|email|max:100',
             'therapy_id' => 'nullable',
         ];
     }

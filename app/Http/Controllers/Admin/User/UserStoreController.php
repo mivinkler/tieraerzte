@@ -9,6 +9,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 class UserStoreController extends Controller 
@@ -21,9 +24,19 @@ class UserStoreController extends Controller
         $data['password'] = Hash::make($password);
         $data['role'] = 1;
 
-        User::firstOrCreate(['email' => $data['email']], $data);
-        Mail::to($data['email'])->send(new PasswordMail($password));
+        DB::beginTransaction();
 
+        try {
+            User::firstOrCreate(['email' => $data['email']], $data);
+            Mail::to($data['email'])->send(new PasswordMail($password));
+
+            DB::commit();
+        } catch (Exception $exception) {
+            DB::rollBack();  
+            Log::error('Error creating user: ' . $exception->getMessage());
+
+            return redirect()->back()->with('error', 'Failed to create user.');
+        }
         return redirect()->route('admin.user.index');
     }
 }

@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('therapies_others', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('clinic_id')->index();
-            $table->unsignedInteger('therapy_other_id')->index();
-            $table->string('therapy_other', 50);
-            $table->string('therapy_other_text', 300)->nullable();
+            $table->unsignedInteger('other_id');
+            $table->tinyInteger('category')->unsigned()->index();
+            $table->string('other_title', 50);
+            $table->string('other_text', 300)->nullable();
             $table->timestamps();
 
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');

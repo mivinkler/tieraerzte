@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('clinic_id')->index()->nullable();
             $table->string('name', 100);
             $table->tinyInteger('role')->unsigned()->nullable();
-            $table->string('email', 255)->unique();
+            $table->string('email', 120)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 255);
             $table->rememberToken();

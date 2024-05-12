@@ -13,8 +13,8 @@ class PraxisUpdateController extends BaseController
 
         $data = $request->validated();
 
-        $this->service->update($praxis, $data);
+        $this->service->updateClinic($praxis, $data);
 
-        return redirect()->route('praxis.show', $praxis->slug);
+        return redirect()->route('praxis.show', ['slug' => $praxis->slug, 'id' => $praxis->id]);
     }
 }

@@ -19,31 +19,34 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string|max:100',
             'street' => 'required|string|max:100',
-            'house' => 'required|string|max:10',
+            'house' => 'required|string|max:20',
             'postcode' => 'required|string|max:10',
             'locality' => 'required|string|max:100',
             'tel' => 'nullable|string|max:20',
+            'website' => 'nullable|string|max:100',
 
-            'text_aboutus' => 'nullable|string|max:500',
+            'text_aboutus' => 'nullable|string|max:350',
             'title_one' => 'nullable|string|max:100',
-            'text_one' => 'nullable|string|max:1000',
+            'text_one' => 'nullable|string|max:1200',
             'title_two' => 'nullable|string|max:100',
-            'text_two' => 'nullable|string|max:1000',
+            'text_two' => 'nullable|string|max:1200',
             'title_three' => 'nullable|string|max:100',
-            'text_three' => 'nullable|string|max:1000',
+            'text_three' => 'nullable|string|max:1200',
             'text_sitebar' => 'nullable|string|max:255',
+
             'image' => 'nullable|mimes:jpg,jpeg,png',
 
             'therapy' => 'array',
             'therapy.*' => 'exists:therapies,id',
             'therapy_text' => 'array',
-            'therapy_text.*' => 'nullable|string|max:255',
-            'therapy_other' => 'array',
-            'therapy_other.*' => 'nullable|string|max:100',
-            'therapy_other_text' => 'array',
-            'therapy_other_text.*' => 'nullable|string|max:255',
-            'therapy_other_id' => 'array',
-            'therapy_other_id.*' => 'nullable|numeric',
+            'therapy_text.*' => 'nullable|string|max:300',
+
+            'other_title' => 'array',
+            'other_title.*' => 'nullable|string|max:50',
+            'other_text' => 'array',
+            'other_text.*' => 'nullable|string|max:300',
+            'other_id' => 'array',
+            'other_id.*' => 'nullable|numeric',
         ];
     }
 
@@ -58,9 +61,9 @@ class StoreRequest extends FormRequest
             'street.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'street.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
 
-            'home.required' => 'Das Feld muss ausgefüllt werden.',
-            'home.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'home.max' => 'Das Feld darf nicht länger als 10 Zeichen sein.',
+            'house.required' => 'Das Feld muss ausgefüllt werden.',
+            'house.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'house.max' => 'Das Feld darf nicht länger als 20 Zeichen sein.',
                         
             'postcode.required' => 'Das Feld muss ausgefüllt werden.',
             'postcode.string' => 'Das Feld muss eine Zeichenfolge sein.',
@@ -73,40 +76,40 @@ class StoreRequest extends FormRequest
             'tel.required' => 'Das Feld muss ausgefüllt werden.',
             'tel.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'tel.max' => 'Das Feld darf nicht länger als 20 Zeichen sein.',
+
+            'website.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'website.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
                         
             'text_aboutus.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_aboutus.max' => 'Das Feld darf nicht länger als 500 Zeichen sein.',
+            'text_aboutus.max' => 'Das Feld darf nicht länger als 350 Zeichen sein.',
               
             'title_one.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'title_one.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
             'text_one.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_one.max' => 'Das Feld darf nicht länger als 1000 Zeichen sein.',
+            'text_one.max' => 'Das Feld darf nicht länger als 1200 Zeichen sein.',
 
             'title_two.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'title_two.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
             'text_two.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_two.max' => 'Das Feld darf nicht länger als 1000 Zeichen sein.',
+            'text_two.max' => 'Das Feld darf nicht länger als 1200 Zeichen sein.',
 
             'title_three.string' => 'Das Feld muss eine Zeichenfolge sein.',
             'title_three.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
             'text_three.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_three.max' => 'Das Feld darf nicht länger als 1000 Zeichen sein.',
+            'text_three.max' => 'Das Feld darf nicht länger als 1200 Zeichen sein.',
 
             'text_sitebar.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'text_sitebar.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
+            'text_sitebar.max' => 'Das Feld darf nicht länger als 300 Zeichen sein.',
                         
             'image.mimes' => 'Das Feld muss ein Bild im Format jpg, jpeg oder png sein.',
                         
             'therapy_text.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'therapy_text.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
+            'therapy_text.max' => 'Das Feld darf nicht länger als 300 Zeichen sein.',
 
-            'other_therapy.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'other_therapy.max' => 'Das Feld darf nicht länger als 100 Zeichen sein.',
-            'other_therapy_text.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'other_therapy_text.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
-
-            'branch_text.string' => 'Das Feld muss eine Zeichenfolge sein.',
-            'branch_text.max' => 'Das Feld darf nicht länger als 255 Zeichen sein.',
+            'other_title.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'other_title.max' => 'Das Feld darf nicht länger als 50 Zeichen sein.',
+            'other_text.string' => 'Das Feld muss eine Zeichenfolge sein.',
+            'other_text.max' => 'Das Feld darf nicht länger als 300 Zeichen sein.',
         ];
     }
 }

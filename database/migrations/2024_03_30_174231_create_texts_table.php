@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('texts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('clinic_id')->index();
-            $table->string('text_aboutus', 500)->nullable();
+            $table->string('text_aboutus', 350)->nullable();
             $table->string('title_one', 100)->nullable();
-            $table->string('text_one', 1500)->nullable();
+            $table->string('text_one', 1200)->nullable();
             $table->string('title_two', 100)->nullable();
-            $table->string('text_two', 1500)->nullable();
+            $table->string('text_two', 1200)->nullable();
             $table->string('title_three', 100)->nullable();
             $table->string('text_three', 1500)->nullable();
             $table->string('text_sitebar', 255)->nullable();

@@ -23,12 +23,12 @@ class FilterRequest extends FormRequest
     {
         return [
             'id' => 'nullable|intenger',
-            'name' => 'nullable|string',
+            'name' => 'nullable|string|max:100',
             'role' => 'nullable|exists:users,role',
-            'praxis' => 'nullable|string',
+            'praxis' => 'nullable|string|max:100',
             'praxis_id' => 'nullable|intenger',
-            'locality' => 'nullable|string',
-            'email' => 'string|email',
+            'locality' => 'nullable|string|max:100',
+            'email' => 'string|email|max:120',
         ];
     }
 }

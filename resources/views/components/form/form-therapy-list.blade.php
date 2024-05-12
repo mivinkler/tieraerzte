@@ -32,12 +32,12 @@
                 <input type="hidden" name="category" value="{{ $category }}">
                 <input class="basis-3/5 p-1 rounded-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500"
                     type="text" 
-                    name="therapy_other[{{ $i }}]"
-                    value="{{ $praxis->therapyOthers[$i]->therapy_other ?? '' }}"/>
+                    name="other_title[{{ $i }}]"
+                    value="{{ $praxis->therapyOthers[$i]->other_title ?? '' }}"/>
                 <textarea class="w-full h-16 rounded-sm border-1 p-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible-2 focus-visible:outline-offset-1 focus-visible:outline-indigo-500"
-                    name="therapy_other_text[{{ $i }}]" 
+                    name="other_text[{{ $i }}]" 
                     maxlength="255"
-                    >{{ $praxis->therapyOthers[$i]->therapy_other_text ?? '' }}</textarea>
+                    >{{ $praxis->therapyOthers[$i]->other_text ?? '' }}</textarea>
             </div>
         @endfor
     <div>

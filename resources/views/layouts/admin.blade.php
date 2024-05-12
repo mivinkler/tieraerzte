@@ -6,6 +6,7 @@
     <title>Tierärzte</title>
     @vite('resources/css/app.css')
 </head>
+</head>
 
 <body class="w-full">
     <div class="flex text-gray-700 fixed h-full w-full">
@@ -114,7 +115,7 @@
                     @include('components.icone_admin')  
                 </div>
             </header>
-            <div class="overflow-auto mt-16 h-full">
+            <div class="mt-16 h-full">
                 @yield('content')
             </div>
         </div>        

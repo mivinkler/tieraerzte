@@ -8,14 +8,14 @@
 </head>
 
 
-<body class="overflow-hidden">
+<body>
     <header class="fixed w-full h-20 top-0 border-b border-gray-200 bg-slate-500">
         <div class="container h-full flex gap-2 items-center justify-end">
             @include('components.icone_admin')  
         </div>
     </header>
 
-    <main class="overflow-auto h-full mt-20">
+    <main class="h-full mt-20">
         <div class="mb-40 flex gap-8">
             <section name="leftbar" class="fixed w-64 flex h-full justify-center bg-gray-200 text-sm">
                 <div class="mt-12">

@@ -23,13 +23,13 @@ class IndexController extends Controller
                 $query->select('clinic_id', 'therapy_id', 'therapy_title', 'therapy_text');
             }])
             ->with(['images' => function ($query) {
-                $query->select('clinic_id', 'foto_path');
+                $query->select('clinic_id', 'url');
             }])->paginate(10);
 
         $therapies = Therapy::all();
  
         $selectedTherapies = $request->input('therapy_id', []);
 
-        return view('main.index', compact('praxen', 'therapies', 'selectedTherapies'));
+        return view('search.index', compact('praxen', 'therapies', 'selectedTherapies'));
     }   
 }

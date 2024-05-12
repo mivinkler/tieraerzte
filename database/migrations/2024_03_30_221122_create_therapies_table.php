@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('therapies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('therapy_title', 50);
+            $table->tinyInteger('category')->unsigned()->index();
         });
     }
 

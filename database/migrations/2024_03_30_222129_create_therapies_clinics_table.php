@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('clinic_id')->index();
             $table->unsignedInteger('therapy_id')->index();
+            $table->tinyInteger('category')->unsigned()->index();
             $table->string('therapy_title', 50);
             $table->string('therapy_text', 300)->nullable();
             $table->timestamps();

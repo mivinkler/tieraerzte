@@ -15,13 +15,12 @@ return new class extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->string('street', 100);
-            $table->string('house', 50)->nullable();
-            $table->string('postcode', 20);
-            $table->string('locality', 50);
+            $table->string('house', 20)->nullable();
+            $table->string('postcode', 10);
+            $table->string('locality', 100);
             $table->string('tel', 20)->nullable();
-            $table->string('tel_two', 70)->nullable();
-            $table->string('website', 150)->nullable();
-            $table->string('slug', 120)->nullable()->index();
+            $table->string('website', 100)->nullable();
+            $table->string('slug', 110)->nullable();
             $table->tinyInteger('rank')->unsigned()->nullable();
             $table->boolean('is_published')->default(true);
             $table->timestamps();

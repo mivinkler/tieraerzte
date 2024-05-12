@@ -1,7 +1,7 @@
 <div class="py-5 group relative">
   <div class="flex gap-4 items-center cursor-pointer list-none">
     <div class="text-gray-50 font-semibold">
-      {{Auth::user()->name}}
+      {{ Auth::user()->name }}
     </div>
     <svg width="32" height="32" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.66 122.88">
         <defs>

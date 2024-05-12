@@ -65,8 +65,7 @@
 </form>
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js">
   $(document).ready(function () {
       // Отслеживаем изменения в файловом поле
       $('#imageInput').change(function () {
@@ -84,5 +83,5 @@
         reader.readAsDataURL(file);
     }
   }
-</script>
+</script> --}}
 
