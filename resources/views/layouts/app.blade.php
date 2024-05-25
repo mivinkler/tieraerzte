@@ -28,11 +28,11 @@
                 <ul class="flex gap-4">
 
                     @guest     
-                        <a class="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 border border-indigo-600 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="{{ route('login') }}">
+                        <a class="flex w-full justify-center rounded-md px-3 py-1 text-[15px] font-semibold leading-6 border border-indigo-600 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="{{ route('login') }}">
                             Login
                         </a>
-                        <a class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="{{ route('register') }}">
-                            Register
+                        <a class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1 text-[15px] font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" href="{{ route('register') }}">
+                            Anmeldung
                         </a>
                     @else
                         <li class="flex gap-8 items-center">
@@ -57,7 +57,7 @@
             </div>
         </nav>
 
-        <main class="py-28">
+        <main class="py-20">
             @yield('content')
         </main>
     </div>

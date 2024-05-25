@@ -11,8 +11,6 @@ class UserCreateController extends Controller
 {
     public function __invoke() 
     {
-        $layout = (Auth::user()->role === User::ROLE_ADMIN) ? 'layouts.admin' : 'layouts.user';
-
-        return view('admin.user.user_form', compact('layout'));
+        return view('admin.user.user_form');
     }
 }

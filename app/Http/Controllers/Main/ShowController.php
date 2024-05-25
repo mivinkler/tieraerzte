@@ -16,6 +16,6 @@ class ShowController extends Controller
             $query->select('clinic_id', 'other_id', 'category', 'other_title', 'other_text');
         }])->findOrFail($id);
     
-        return view('praxis.show', compact('praxis'));
+        return view('main.show', compact('praxis'));
     }  
 }  

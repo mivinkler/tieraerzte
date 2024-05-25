@@ -1,8 +1,8 @@
-@extends('layouts.layout-search')
+@extends('layouts.layout_search')
 
 @section('content')
 <div class="">
-    <form id="myForm" action="{{ route('praxis.search.index') }}" method="get">
+    <form id="myForm" action="{{ route('praxis.index') }}" method="get">
         <div class="bg-sky-200">
             <div class="pb-14 pt-28 container w-[1200px] flex gap-10 items-end">
 

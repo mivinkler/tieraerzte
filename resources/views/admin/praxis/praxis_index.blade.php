@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.layout_admin')
 
 @section('content')
 
@@ -140,7 +140,7 @@
                             @endif
                         </div>
                         <div>
-                            <form id="PraxisDestroy" action="{{ route('admin.praxis.delete', $praxis->id) }}" method="post" onsubmit="return confirm('Möchten Sie wirklich löschen?');">
+                            <form id="PraxisDestroy" action="{{ route('admin.praxis.delete', $praxis->id) }}" method="post" onsubmit="return confirm('Praxis löschen?');">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn">

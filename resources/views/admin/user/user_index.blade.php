@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.layout_admin')
 
 @section('content')
 <main class="mx-auto px-4 mt-8">

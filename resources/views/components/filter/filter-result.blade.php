@@ -3,12 +3,12 @@
         <div class="flex gap-x-6 mb-4 p-4 bg-sky-50/80 border border-gray-100 rounded">
             <div class="w-32 flex-none">
                 {{-- TODO Добавить 'default.jpg' --}}
-                <img class="rounded w-full" src="{{ $praxis->images->url }}" alt="">
+                <img class="rounded w-full" src="{{ optional($praxis->images)->url }}" alt="">
             </div>
             <div class="w-full">
                 <div>
                     <div class="font-semibold text-base">{{ $praxis->title }}</div>
-                    <div>{{ $praxis->street }} {{ $praxis->house }}</div>
+                    <div>{{ $praxis->street }} {{ optional($praxis)->house }}</div>
                     <div>{{ $praxis->postcode }} {{ $praxis->locality }}</div>
                 </div>
                 <div class="text-sm mt-5">

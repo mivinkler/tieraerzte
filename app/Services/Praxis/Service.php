@@ -94,10 +94,12 @@ class Service {
             $path = 'images/' . $name;
             $manager = new ImageManager(new Driver());
             $image = $manager->read($img);
-            $image->resize(200, 200)->save(storage_path('app/public/images/' . $name));
+            $image
+                ->resize(200, null)
+                ->save(storage_path('app/public/images/' . $name));
             
             // Обновляем или создаем запись в базе данных с путем к файлу
-            $praxis->images()->updateOrCreate(['clinic_id' => $praxis->id], ['path' => $path, 'url' => ('/storage/' . $path)]);
+            $praxis->images()->updateOrCreate(['clinic_id' => $praxis->id], ['foto_path' => $path, 'url' => ('/storage/' . $path)]);
         }
     }
     

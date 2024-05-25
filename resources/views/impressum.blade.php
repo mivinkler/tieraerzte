@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.layout_main')
 
 @section('content')
     <div class="container w-[1000px] h-full">

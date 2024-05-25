@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.layout_praxis')
 
 @section('content')
 <div  class="bg-sky-200 w-full h-30vh">
@@ -19,29 +19,29 @@
     <div class="px-1 w-full h-full">  
         <section class="mt-20 mb-20">
             <div>
-                @include('praxis.components.praxis-text', ['title' => 'title_one', 'text' => 'text_one'])
+                @include('components.praxis.praxis-text', ['title' => 'title_one', 'text' => 'text_one'])
             </div>
             <div>
-                @include('praxis.components.praxis-text', ['title' => 'title_two', 'text' => 'text_two'])
+                @include('components.praxis.praxis-text', ['title' => 'title_two', 'text' => 'text_two'])
             </div>
             <div>
-                @include('praxis.components.praxis-text', ['title' => 'title_three', 'text' => 'text_three'])
+                @include('components.praxis.praxis-text', ['title' => 'title_three', 'text' => 'text_three'])
             </div>
         </section>
 
         <section>
             <h3 class="font-bold mb-6 text-lg text-sky-800">Leistungen</h3>
-            @include( 'praxis.components.praxis-therapies', ['category' => '1'])
+            @include( 'components.praxis.praxis-therapies', ['category' => '1'])
         </section>
 
         <section class="mt-10">
             {{-- <h3 class="font-bold mb-6 text-lg text-sky-800">Zusatzleistungen</h3> --}}
-            @include('praxis.components.praxis-therapies', ['category' => '2'])
+            @include('components.praxis.praxis-therapies', ['category' => '2'])
         </section> 
     </div>
 
     <div class="flex-none px-6 bg-sky-50/50 pt-12 text-sm">
-        @include('praxis.components.praxis-sitebar')
+        @include('components.praxis.praxis-sitebar')
     </div>
 </div>
 @endsection

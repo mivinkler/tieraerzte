@@ -3,7 +3,7 @@
         <h1 class="text-4xl font-bold">Finden Sie den Tierarzt in Ihrer Nähe</h1>
         <p class="text-lg leading-9 font-semibold mt-6 mb-16">Vergleichen Sie schnell und einfach Tierärzte in Ihrer Region! Finden Sie die passenden Dienstleistungen, die besten Preise und die höchsten Bewertungen, um die optimale Pflege für Ihr Haustier zu sichern</p>
         <div class="bg-white/20 rounded-md p-6">
-            <form id="myForm" action="{{ route('praxis.search.index') }}" method="get">
+            <form id="myForm" action="{{ route('praxis.index') }}" method="get">
                 <div id="filter_header">
                     <x-filter.filter-header :title="request('title')" :postcode="request('postcode')" :radius="request('radius')"/>
                 </div>

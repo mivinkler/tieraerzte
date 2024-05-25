@@ -48,7 +48,7 @@ class LoginController extends Controller
         } 
         if ($user->role == User::ROLE_USER)
         {
-            return redirect()->route('admin.praxis.create');
+            return redirect()->route('praxis.create');
         }
 
         return redirect($this->redirectTo);

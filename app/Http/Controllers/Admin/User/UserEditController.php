@@ -14,8 +14,6 @@ class UserEditController extends Controller
 
         $users = Auth::user();
 
-        $layout = (Auth::user()->role === User::ROLE_ADMIN) ? 'layouts.admin' : 'layouts.user';
-
-        return view('admin.user.user_form', compact('user', 'roles', 'layout'));
+        return view('admin.user.user_form', compact('user', 'roles'));
     }
 }

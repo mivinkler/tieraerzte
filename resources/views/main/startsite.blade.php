@@ -1,10 +1,10 @@
-@extends('home.components.layout')
+@extends('layouts.layout_startsite')
 
 @section('content')
 
 <section class="bg-indigo-300/75 pb-24">
     <div class="container max-w-[1400px]">
-        @include('home.components.hero')
+        @include('components.startsite.hero')
     </div>
 </section>
 
@@ -16,15 +16,15 @@
 </section>
 
 <section id="therapies" class="container max-w-[1400px]">
-    @include('home.components.therapies')
+    @include('components.startsite.therapies')
 </section>   
 
 <section id="location" class="my-64 container max-w-[1400px] bg-indigo-300/75 h-96 rounded-md">
-    @include('home.components.location')
+    @include('components.startsite.location')
 </section>
 
 <section class="my-64 text-violet-950 container max-w-[1460px]">
-    @include('home.components.blog')
+    @include('components.startsite.blog')
 </section>
 
 @endsection

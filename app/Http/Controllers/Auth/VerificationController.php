@@ -43,7 +43,7 @@ class VerificationController extends Controller
     public function redirectPath()
     {
         if (auth()->check()) {
-            return '/user/profile/'.auth()->user()->id.'/edit';
+            return route('praxis.create');
         }
 
         return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';

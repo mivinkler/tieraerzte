@@ -17,8 +17,8 @@
                 <a href="{{ route('main')}}" class="">Healpets</a>
             </div>
             <div class="flex gap-6">
-                <a href="{{ route('praxis.search.index')}}">Tierarzt suchen</a>
-                <a href="{{ route('praxis.search.index')}}">Kontakt</a>
+                <a href="{{ route('praxis.index')}}">Tierarzt suchen</a>
+                <a href="{{ route('praxis.index')}}">Kontakt</a>
             </div>
             <div class="gap-6 flex h-7">
                 @include('components.icone_login')

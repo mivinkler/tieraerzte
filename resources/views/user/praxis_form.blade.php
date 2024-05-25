@@ -1,18 +1,18 @@
-@extends('layouts.layout_admin')
+@extends('layouts.layout_user')
 
 @section('content')
 
 @if(isset($praxis) && $praxis->id)
   {{-- update --}}
-  <form action="{{ route('admin.praxis.update', $praxis->id) }}" method="post" enctype="multipart/form-data" id="myForm">
+  <form action="{{ route('praxis.update', $praxis->id) }}" method="post" enctype="multipart/form-data" id="myForm">
     @method('patch')
 @else
   {{-- create --}}
-  <form action="{{ route('admin.praxis.store') }}" method="post" enctype="multipart/form-data" id="myForm">
+  <form action="{{ route('praxis.store') }}" method="post" enctype="multipart/form-data" id="myForm">
 @endif
   @csrf
-  <div class="flex flex-col gap-20 container py-24 px-48">
-    <section class="basis-5/7 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+  <div class="flex flex-col gap-20 container w-[1280px] py-6">
+    <section class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       @include('components.form.input', ['name' => 'title', 'label' => 'Praxis','width' => 'col-span-6', 'value' => $praxis->title ?? '' ])
       @include('components.form.input', ['name' => 'street', 'label' => 'Strasse', 'width' => 'col-span-4', 'value' => $praxis->street ?? ''])
       @include('components.form.input', ['name' => 'house', 'label' => 'Hausnummer', 'width' => 'col-span-2', 'value' => $praxis->house ?? ''])
@@ -65,7 +65,7 @@
 </form>
 @endsection
 
-{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js">
   $(document).ready(function () {
       // Отслеживаем изменения в файловом поле
       $('#imageInput').change(function () {
@@ -83,5 +83,5 @@
         reader.readAsDataURL(file);
     }
   }
-</script> --}}
+</script>
 

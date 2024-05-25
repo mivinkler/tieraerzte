@@ -30,6 +30,6 @@ class IndexController extends Controller
  
         $selectedTherapies = $request->input('therapy_id', []);
 
-        return view('search.index', compact('praxen', 'therapies', 'selectedTherapies'));
+        return view('main.index', compact('praxen', 'therapies', 'selectedTherapies'));
     }   
 }

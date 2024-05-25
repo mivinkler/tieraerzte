@@ -13,6 +13,6 @@ class MainController extends Controller
         $therapies = Therapy::all();
         $selectedTherapies = $request->input('therapy_id', []);
 
-        return view('home.main', compact('therapies', 'selectedTherapies'));
+        return view('main.startsite', compact('therapies', 'selectedTherapies'));
     }
 }
