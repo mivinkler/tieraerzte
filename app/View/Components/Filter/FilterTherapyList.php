@@ -1,5 +1,4 @@
 <?php
-
 namespace App\View\Components\Filter;
 
 use Closure;
@@ -8,25 +7,21 @@ use Illuminate\View\Component;
 
 class FilterTherapyList extends Component
 {
-    public $therapies;
-    public $category;
-    public $selectedTherapiesLookup;
+    public $therapyList;
+    public $selectedItemsLookup;
 
-    public function __construct($therapies, $category, $selectedTherapies)
+    public function __construct($catalog, $selectedItems)
     {
-        $this->category = $category;
-        $this->selectedTherapiesLookup = array_flip($selectedTherapies);
+        $this->selectedItemsLookup = array_flip($selectedItems);
 
-        $this->therapies = $therapies->filter(function ($therapy) {
-            return $therapy->category == $this->category;
+        $this->therapyList = $catalog->filter(function ($item) {
+            return $item;
         });
     }
-    
 
-    public function isChecked($therapyId)
+    public function isChecked($itemId)
     {
-        // Проверка существования ключа в массиве для улучшения производительности
-        return isset($this->selectedTherapiesLookup[$therapyId]);
+        return isset($this->selectedItemsLookup[$itemId]);
     }
 
     public function render(): View|Closure|string

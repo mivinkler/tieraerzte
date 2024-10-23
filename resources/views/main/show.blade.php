@@ -5,7 +5,7 @@
     <div class="container w-[1280px] h-full flex gap-14 pb-20 pt-28 items-center">
         @if (isset($praxis->images))
             <div class="h-56 p-1">
-                <img src="{{ asset($praxis->images->url) }}" alt="Praxis Photo" class="w-full h-full object-contain rounded-md outline outline-1 outline-white">
+                <img src="{{ asset('storage/' . $praxis->images->foto_path) }}" alt="Praxis Photo" class="w-full h-full object-contain rounded-md outline outline-1 outline-white">
             </div>
         @endif
         <div class="w-3/5 p-1">
@@ -29,18 +29,35 @@
             </div>
         </section>
 
-        <section>
-            <h3 class="font-bold mb-6 text-lg text-sky-800">Leistungen</h3>
-            @include( 'components.praxis.praxis-therapies', ['category' => '1'])
+        <section class="mb-36">
+            <div>
+                <h3 class="font-bold mb-6 text-lg text-sky-800">Medizinische Leistungen</h3>
+                @include( 'components.praxis.praxis-medical', ['prefix' => 'therapy'] )
+            </div>
+            <div class="mt-24">
+                <h3 class="font-bold mb-6 text-lg text-sky-800">Pflegerische Leistungen</h3>
+                @include( 'components.praxis.praxis-medical', ['prefix' => 'nursing'] )
+            </div>
+            {{-- <div class="mt-24">
+                <h3 class="font-bold mb-6 text-lg text-sky-800">Service</h3>
+                @include( 'components.praxis.praxis-service', ['prefix' => 'service'] )
+            </div>  
+            <div class="mt-24">
+                <h3 class="font-bold mb-6 text-lg text-sky-800">Apparative Ausstattung</h3>
+                @include( 'components.praxis.praxis-service', ['prefix' => 'device'] )
+            </div>
+            <div class="mt-24">
+                <h3 class="font-bold mb-6 text-lg text-sky-800">Tierarten</h3>
+                @include( 'components.praxis.praxis-service', ['prefix' => 'animal'] )
+            </div>
+            <div class="mt-24">
+                <h3 class="font-bold mb-6 text-lg text-sky-800">Sprachen</h3>
+                @include( 'components.praxis.praxis-service', ['prefix' => 'language'] )
+            </div> --}}
         </section>
-
-        <section class="mt-10">
-            {{-- <h3 class="font-bold mb-6 text-lg text-sky-800">Zusatzleistungen</h3> --}}
-            @include('components.praxis.praxis-therapies', ['category' => '2'])
-        </section> 
     </div>
 
-    <div class="flex-none px-6 bg-sky-50/50 pt-12 text-sm">
+    <div class="flex-none px-8 bg-sky-50/50 pt-12">
         @include('components.praxis.praxis-sitebar')
     </div>
 </div>

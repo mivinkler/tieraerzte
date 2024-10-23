@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\User\Praxis;
 
 use App\Http\Controllers\Main\Controller;
-use App\Models\Therapy;
+use App\Models\TherapyList;
 use App\Models\User;
+use App\Models\TherapyOther;
 
 class CreateController extends Controller 
 {
     public function __invoke() {
 
-        $therapies = Therapy::all();
+        $therapyList = TherapyList::all();
         $roles = User::getRoles();
+        // $therapyOthers = TherapyOther::all();
 
-        return view('user.praxis_form', compact('therapies', 'roles'));
+        return view('user.praxis_form', compact('therapyList', 'roles'));
     }
 }
 

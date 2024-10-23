@@ -19,9 +19,9 @@ class TherapyClinic extends Model
         return $this->belongsTo(Clinic::class);
     }
 
-    public function therapy()
+    public function therapyList()
     {
-        return $this->belongsTo(Therapy::class);
+        return $this->belongsTo(TherapyList::class);
     }
 
 }

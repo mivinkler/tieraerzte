@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Praxis;
 use App\Http\Filters\PraxisFilter;
 use App\Http\Requests\Praxis\FilterRequest;
 use App\Models\Clinic;
-use App\Models\Therapy;
+use App\Models\TherapyList;
 use App\Http\Controllers\Main\Controller;
 
 
@@ -20,10 +20,10 @@ class PraxisIndexController extends Controller
 
         $praxen = Clinic::filter($filter)->simplePaginate(50);
         
-        $therapies = Therapy::all();
+        $therapyList = TherapyList::all();
 
         $selectedTherapies = $request->input('therapy_id', []);
 
-        return view('admin.praxis.praxis_index', compact('praxen', 'therapies', 'selectedTherapies'));
+        return view('admin.praxis.praxis_index', compact('praxen', 'therapyList', 'selectedTherapies'));
     }   
 }

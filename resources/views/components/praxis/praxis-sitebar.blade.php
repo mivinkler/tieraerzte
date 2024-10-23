@@ -1,7 +1,7 @@
-<div>
-    <img class="h-48 rounded-md outline outline-1 outline-white" src="https://img.freepik.com/premium-vector/abstract-flat-map-city-plan-town-detailed-city-map_257312-609.jpg" alt="">
+<div class="w-[220px]">
+    <img class="w-full rounded-md outline outline-1 outline-white" src="{{ asset('storage/' . $praxis->images->map_path) }}" alt="">
 </div>
-<div class="mt-9 mb-6">
+<div class="mt-9 mb-3">
     <h2 class="font-semibold"> {{ $praxis->title }} </h2>
     <div> {{ $praxis->street }} {{ $praxis->house }}</div>
     <div> {{ $praxis->postcode }} {{ $praxis->locality }} </div>
@@ -15,7 +15,7 @@
             {{ $praxis->tel }}
         </div>
     @endif
-    @if(!empty($praxis->user->email))
+    {{-- @if(!empty($praxis->user->email))
         <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="#8b8b8b" viewBox="0 0 122.88 68.57">
                 <title>mail</title>
@@ -23,7 +23,7 @@
             </svg>
             {{ $praxis->user->email }}
         </div>
-    @endif
+    @endif --}}
     @if(!empty($praxis->website))
         <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="#8b8b8b" viewBox="0 0 122.88 122.88">
@@ -33,7 +33,77 @@
         </div>
     @endif
 </div>
-<div class="mt-16 w-fit">
+
+<div class="mt-8">
+    <div class="flex gap-x-2 mb-3">
+        @foreach($praxis->serviceClinics as $serviceClinic)
+            @if($serviceClinic->serviceList && $serviceClinic->serviceList->icon_path)
+                <img class="w-5 h-5" src="{{ asset('storage/icons/' . $serviceClinic->serviceList->icon_path) }}" alt="Service: {{ $serviceClinic->service_title }}" title="Service: {{ $serviceClinic->service_title }}">
+            @endif
+        @endforeach
+    </div>
+    <div class="flex gap-x-2 mb-3">
+        @foreach($praxis->deviceClinics as $deviceClinic)
+            @if($deviceClinic->deviceList && $deviceClinic->deviceList->icon_path)
+                <img class="w-5 h-5" src="{{ asset('storage/icons/' . $deviceClinic->deviceList->icon_path) }}" alt="device: {{ $deviceClinic->device_title }}" title="device: {{ $deviceClinic->device_title }}">
+            @endif
+        @endforeach
+    </div>
+    <div class="flex gap-x-2">
+        @foreach($praxis->languageClinics as $languageClinic)
+            @if($languageClinic->languageList && $languageClinic->languageList->icon_path)
+                <img class="w-5 h-5" src="{{ asset('storage/icons/' . $languageClinic->languageList->icon_path) }}" alt="language: {{ $languageClinic->language_title }}" title="language: {{ $languageClinic->language_title }}">
+            @endif
+        @endforeach
+    </div>
+</div>
+@php
+    $days = [
+        'monday' => 'Mo.',
+        'tuesday' => 'Di.',
+        'wednesday' => 'Mi.',
+        'thursday' => 'Do.',
+        'friday' => 'Fr.',
+        'saturday' => 'Sa.',
+        'sunday' => 'So.',
+    ];
+@endphp
+
+<div class="mt-10">
     <div class="font-semibold pb-2">Öffnungszeiten</div>
-    <div> {!! nl2br(e($praxis->text->text_sitebar)) !!}</div>
+    <div>
+        @foreach ($days as $day => $label)
+            <div class="flex">
+                <div class="w-8 mr-2">{{ $label }}</div>
+                <div class="flex gap-4">
+                    @php
+                        $morning_start = optional($praxis->timeTable)->{$day . '_start1'};
+                        $morning_end = optional($praxis->timeTable)->{$day . '_end1'};
+                        $afternoon_start = optional($praxis->timeTable)->{$day . '_start2'};
+                        $afternoon_end = optional($praxis->timeTable)->{$day . '_end2'};
+                    @endphp
+                    <div>
+                        {{ $morning_start ? \Carbon\Carbon::createFromFormat('H:i:s', $morning_start)->format('H:i') : '' }}-{{ $morning_end ? \Carbon\Carbon::createFromFormat('H:i:s', $morning_end)->format('H:i') : '' }}
+                    </div>
+                    <div>
+                        {{ $afternoon_start ? \Carbon\Carbon::createFromFormat('H:i:s', $afternoon_start)->format('H:i') : '' }}-{{ $afternoon_end ? \Carbon\Carbon::createFromFormat('H:i:s', $afternoon_end)->format('H:i') : '' }}
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
+<div class="mt-12">
+    <div class="font-semibold mb-1">Nächster freie Termin:</div> 
+    <div> {{ optional($praxis->timeOutput)->next_free_time}} </div> 
+</div>
+
+<div class="mt-6 flex gap-x-2">
+    <div class="font-semibold mb-1">Intervall:</div> 
+    <div> {{ optional($praxis->timeInterval)->days_interval}} Tage</div> 
+</div>
+
+<div class="mt-8">
+    @include('components.praxis.praxis-contact')
 </div>

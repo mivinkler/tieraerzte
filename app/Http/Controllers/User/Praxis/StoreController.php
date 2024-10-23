@@ -12,8 +12,8 @@ class StoreController extends BaseController
     public function __invoke(StoreRequest $request, Clinic $praxis) { 
 
         $data = $request->validated();
-        $createdPraxis = $this->service->createClinic($data);
 
+        $createdPraxis = $this->service->createClinic($data);
         /** @var \Illuminate\Database\Eloquent\Model $user */
         $user = Auth::user();
         $user->update(['clinic_id' => $createdPraxis->id]);

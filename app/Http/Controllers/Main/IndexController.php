@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Main;
 use App\Http\Filters\MainFilter;
 use App\Http\Requests\Main\FilterRequest;
 use App\Models\Clinic;
-use App\Models\Therapy;
+use App\Models\TherapyList;
 use App\Http\Controllers\Main\Controller;
-
+use App\Models\DeviceClinic;
 
 class IndexController extends Controller
 {
@@ -22,14 +22,21 @@ class IndexController extends Controller
             ->with(['therapyClinics' => function ($query) {
                 $query->select('clinic_id', 'therapy_id', 'therapy_title', 'therapy_text');
             }])
+            ->with(['deviceClinics' => function ($query) {
+                $query->select('clinic_id', 'device_id', 'device_title')->with(['deviceList' => function ($subQuery) {
+                    $subQuery->select('id', 'icon_path');
+                }]);
+            }])
             ->with(['images' => function ($query) {
-                $query->select('clinic_id', 'url');
+                $query->select('clinic_id', 'foto_path');
             }])->paginate(10);
 
-        $therapies = Therapy::all();
- 
+       
+
+        $therapyList = TherapyList::all();
         $selectedTherapies = $request->input('therapy_id', []);
 
-        return view('main.index', compact('praxen', 'therapies', 'selectedTherapies'));
+        return view('main.index', compact('praxen', 'therapyList', 'selectedTherapies'));
     }   
 }
+

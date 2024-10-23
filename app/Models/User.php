@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Traits\Filterable;
+use App\Notifications\VerifyWithQueueNotification;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -57,7 +59,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    public function clinic(){
+    public function clinic() {
         return $this->belongsTo(Clinic::class);
     }
+
+    public function SendEmailVerificationNotification() {
+        $this->notify(new VerifyWithQueueNotification);
+    }
+
 }

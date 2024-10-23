@@ -20,11 +20,7 @@
             <section id="filter_leftbar" class="w-80 px-8 pt-9 pb-52 h-full space-y-4 bg-slate-100">
                 <div>
                     <h3 class="font-semibold mb-3 text-base">Fachbereiche</h3>
-                    <x-filter.filter-therapy-list :therapies="$therapies" :category="1" :selected-therapies="$selectedTherapies" />
-                </div>
-                <div class="pt-3">
-                    <h3 class="font-semibold mb-3 text-base">Leistungen</h3>
-                    <x-filter.filter-therapy-list :therapies="$therapies" :category="2" :selectedTherapies="$selectedTherapies" />
+                    <x-filter.filter-therapy-list :catalog="$therapyList" :selectedItems="$selectedTherapies" />
                 </div>
             </section>
 
@@ -36,6 +32,5 @@
             </section>
         </div>
     </form>
-
 </div>
 @endsection

@@ -2,16 +2,16 @@
 
 @section('content')
 
-<section class="bg-indigo-300/75 pb-24">
+<section class="bg-indigo-200 pb-24">
     <div class="container max-w-[1400px]">
         @include('components.startsite.hero')
     </div>
 </section>
 
 <section class="container my-48 text-center w-1/2 bg-white">
-    <div class=" text-violet-950">
-        <h2 class="text-4xl mb-10 font-semibold">Tierarzt wählen</h2>
-        <p class="text-xl leading-10">Unser Portal ermöglicht es Ihnen, aus einer breiten Palette von tierärztlichen Dienstleistungen zu wählen, von Routineuntersuchungen bis hin zu spezialisierten Behandlungen. Nutzen Sie unsere Vergleichsfunktionen, um sicherzustellen, dass Ihr Haustier die beste verfügbare Pflege erhält.</p>
+    <div class="">
+        <h2 class="text-3xl text-violet-950 mb-10 font-semibold">Tierarzt wählen</h2>
+        <p class="text-xl text-gray-900 leading-10">Unser Portal ermöglicht es Ihnen, aus einer breiten Palette von tierärztlichen Dienstleistungen zu wählen, von Routineuntersuchungen bis hin zu spezialisierten Behandlungen. Nutzen Sie unsere Vergleichsfunktionen, um sicherzustellen, dass Ihr Haustier die beste verfügbare Pflege erhält.</p>
     </div>
 </section>
 

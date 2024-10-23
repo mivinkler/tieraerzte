@@ -14,8 +14,8 @@ class ProfileEditController extends Controller
 
         $users = Auth::user();
 
-        $layout = (Auth::user()->role === User::ROLE_ADMIN) ? 'layouts.admin' : 'layouts.user';
+        // $layout = (Auth::user()->role === User::ROLE_ADMIN) ? 'layouts.admin' : 'layouts.user';
 
-        return view('user.profile_form', compact('user', 'roles', 'layout'));
+        return view('user.profile_form', compact('user', 'roles'));
     }
 }

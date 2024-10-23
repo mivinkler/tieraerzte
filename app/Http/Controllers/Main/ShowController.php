@@ -8,14 +8,18 @@ use App\Models\Clinic;
 
 class ShowController extends Controller
 {
-    public function __invoke($slug, $id)
+    public function __invoke($id, $slug)
     {
-        $praxis = Clinic::with(['therapyClinics' => function ($query) {
-            $query->select('clinic_id', 'therapy_id', 'category', 'therapy_title', 'therapy_text');
-        }, 'therapyOthers' => function ($query) {
-            $query->select('clinic_id', 'other_id', 'category', 'other_title', 'other_text');
-        }])->findOrFail($id);
+        // Используем условия для поиска клиники по id и slug
+        $praxis = Clinic::where('id', $id)
+            ->where('slug', $slug)
+            ->with(['therapyClinics' => function ($query) {
+                $query->select('clinic_id', 'therapy_id', 'therapy_title', 'therapy_text');
+            }, 'therapyOthers' => function ($query) {
+                $query->select('clinic_id', 'therapy_other_id', 'therapy_other_title', 'therapy_other_text');
+            }])
+            ->firstOrFail();
     
         return view('main.show', compact('praxis'));
     }  
-}  
+}

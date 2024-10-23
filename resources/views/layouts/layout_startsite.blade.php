@@ -11,14 +11,13 @@
 </head>
 
 <body>
-    <header id="header" class="fixed z-10 w-full top-0 font-semibold text-sm text-gray-600">
+    <header id="header" class="fixed z-10 w-full top-0 font-semibold">
         <nav class="container max-w-[1400px] h-16 flex items-center justify-between">
             <div>
                 <a href="#" class="">Healpets</a>
             </div>
-            <div class="flex gap-6">
+            <div class="text-indigo-950 tracking-wide">
                 <a href="{{ route('praxis.index')}}">Tierarzt suchen</a>
-                <a href="{{ route('praxis.index')}}">Kontakt</a>
             </div>
             <div class="flex gap-6 text-sm">
                 @include('components.icone_login')
@@ -52,10 +51,10 @@
         const buttonHeader = document.getElementById('buttonHeader')
         if (window.scrollY > 50) {
             header.classList.add('bg-white');
-            buttonHeader.classList.add('border-zinc-300')
+            buttonHeader.classList.add('border-neutral-300')
         } else {
             header.classList.remove('bg-white');
-            buttonHeader.classList.remove('border-zinc-300');
+            buttonHeader.classList.remove('border-neutral-300');
         }
     });
 </script>

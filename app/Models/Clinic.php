@@ -37,11 +37,56 @@ class Clinic extends Model
         return $this->hasMany(TherapyOther::class);
     }
 
+    public function nursingClinics()
+    {
+        return $this->hasMany(NursingClinic::class);
+    }
+
+    public function nursingOthers()
+    {
+        return $this->hasMany(NursingOther::class);
+    }
+
+    public function serviceClinics()
+    {
+        return $this->hasMany(ServiceClinic::class);
+    }
+
+    public function deviceClinics()
+    {
+        return $this->hasMany(DeviceClinic::class, 'clinic_id');
+    }
+
+    public function languageClinics()
+    {
+        return $this->hasMany(LanguageClinic::class);
+    }
+
+    public function animalClinics()
+    {
+        return $this->hasMany(AnimalClinic::class);
+    }
+
     public function geoCoordinates()
     {
         return $this->hasOne(GeoCoordinates::class);
     }
+
+    public function timeTable()
+    {
+        return $this->hasOne(TimeTable::class);
+    }
+
+    public function timeInterval()
+    {
+        return $this->hasOne(TimeInterval::class);
+    }
     
+    public function timeOutput()
+    {
+        return $this->hasOne(TimeOutput::class);
+    }
+
     public function seo()
     {
         return $this->hasOne(Seo::class);

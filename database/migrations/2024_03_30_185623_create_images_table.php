@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('clinic_id')->index();
             $table->string('foto_path', 255);
-            $table->string('url', 255);
+            $table->string('map_path', 255);
             $table->timestamps();
 
             $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');

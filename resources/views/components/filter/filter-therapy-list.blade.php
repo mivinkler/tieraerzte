@@ -1,5 +1,5 @@
 <div class="space-y-3" id="filter-section-0">
-    @foreach($therapies as $therapy)
+    @foreach($therapyList as $therapy)
         <div class="flex items-center">
             <input class="h-[12px] w-[12px] rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                 type="checkbox"

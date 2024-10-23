@@ -1,7 +1,7 @@
-<div class="flex h-screen items-center">
-    <div class="w-1/2 text-violet-950">
-        <h1 class="text-4xl font-bold">Finden Sie den Tierarzt in Ihrer Nähe</h1>
-        <p class="text-lg leading-9 font-semibold mt-6 mb-16">Vergleichen Sie schnell und einfach Tierärzte in Ihrer Region! Finden Sie die passenden Dienstleistungen, die besten Preise und die höchsten Bewertungen, um die optimale Pflege für Ihr Haustier zu sichern</p>
+<div class="flex h-screen pt-56">
+    <div class="w-1/2">
+        <h1 class="text-violet-950 text-4xl font-bold">Besten Tierarzt in der Nähe finden</h1>
+        <p class="text-lg text-indigo-950 leading-9 tracking-wide font-semibold mt-6 mb-16">Vergleichen Sie schnell und einfach Tierärzte in Ihrer Region! Finden Sie die passenden Dienstleistungen, die besten Preise und die höchsten Bewertungen, um die optimale Pflege für Ihr Haustier zu sichern</p>
         <div class="bg-white/20 rounded-md p-6">
             <form id="myForm" action="{{ route('praxis.index') }}" method="get">
                 <div id="filter_header">
@@ -17,53 +17,45 @@
 
 <div id="smart">
     <div class="text-center text-violet-950">
-        <h2 class="text-3xl font-semibold">Tierärzte vergleichen</h2>
-        <p class="leading-8 font-semibold text-lg mt-8 mb-20">Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform. </br>Vergleichen Sie die Angebote von Tierärzten in Ihrer Gegend, um die beste Versorgung für Ihr Haustier zu gewährleisten</p>
+        <h2 class="text-3xl font-semibold">Tierarzt suchen</h2>
+        <p class="leading-8 font-semibold text-lg mt-8 mb-20 text-indigo-950 tracking-wide">Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform. </br>Vergleichen Sie die Angebote von Tierärzten in Ihrer Gegend, um die beste Versorgung für Ihr Haustier zu gewährleisten</p>
     </div>
 
     <div class="flex gap-4 justify-between">
         <a href="#therapies">
-            <div class="w-96 shadow-2xl rounded-md bg-white hover:bg-indigo-100 p-8 relative">
-                {{-- <img width="64" src="https://uploads-ssl.webflow.com/6414640d6e0e2d7af389e640/6414703312a995c5e1a88c08_Medical%20Care%20(1).png" alt=""> --}}
-                <div>
-                    
+            <div class="w-96 shadow-2xl rounded-md bg-white hover:bg-indigo-100 p-8 relative group">
+                <div class="h-[68px] w-[68px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-[64px] group-hover:scale-110 transition-transform duration-200 fill-[#2e10658a] group-hover:fill-[#3512758a]" viewBox="0 0 122.88 102.85">
+                        <g><path class="st0" fill-rule="evenodd" clip-rule="evenodd" d="M40.55,0h20.3c3.8,0,6.89,3.11,6.89,6.89v26.77h26.77c3.8,0,6.89,3.11,6.89,6.89v5.63l-0.64,0.6 c-1.52-0.47-3.04-0.87-4.57-1.17c-3.02-0.61-6.04-0.9-9.05-0.87c-3.04,0.03-6.01,0.36-8.93,0.97c-1.43,0.3-2.86,0.67-4.28,1.1 l-3.56-3.39c-0.75-0.71-1.63-1.29-2.61-1.71l0,0.01l-0.02-0.01c-0.88-0.37-1.84-0.61-2.85-0.68l-0.23-0.01 c-2.43-0.1-4.67,0.78-6.33,2.3c-1.67,1.52-2.76,3.68-2.89,6.12L54.79,62.4c-0.64,1.35-1.18,2.66-1.63,3.91 c-0.55,0.16-1.09,0.37-1.6,0.63l0.01,0.01c-1.67,0.85-3.07,2.23-3.94,4c-0.39,0.73-0.66,1.53-0.78,2.38 c-0.34,1.94-0.02,3.88,0.82,5.54c0.7,1.38,1.75,2.57,3.08,3.44c-1.23,1.74-1.84,3.9-1.57,6.15l0.02,0l0.01,0.06 c0.31,2.42,1.56,4.49,3.34,5.88c1.44,1.13,3.22,1.81,5.1,1.89c0.81,0.99,1.68,1.92,2.6,2.8c0.59,0.56,1.2,1.1,1.84,1.62 c-0.4,0.07-0.82,0.11-1.24,0.11h-20.3c-3.8,0-6.89-3.11-6.89-6.89V67.74H6.89C3.1,67.74,0,64.63,0,60.83v-20.3 c0-3.8,3.11-6.89,6.89-6.89h26.77V6.89C33.66,3.09,36.75,0,40.55,0L40.55,0L40.55,0L40.55,0z M98.48,71.9 c1.31,0,2.36,1.06,2.36,2.36c0,1.3-1.06,2.36-2.36,2.36s-2.37-1.05-2.37-2.35C96.11,72.97,97.17,71.9,98.48,71.9L98.48,71.9 L98.48,71.9z M101.96,99.54c-0.51,0.22-1.01,0.43-1.52,0.64c-1.99,0.83-4.04,1.45-6.14,1.88c-2.26,0.48-4.52,0.75-6.79,0.79 c-4.85,0.08-9.7-0.88-14.56-2.88l-3.29-1.75c-3.66-2.14-6.77-5.01-8.93-8.5c-0.12-0.19-0.24-0.39-0.35-0.58l-2.93,0.36 c-0.99,0.12-1.89-0.58-2.02-1.58c-0.12-0.99,0.58-1.89,1.58-2.02l1.74-0.21c-0.92-2.48-1.39-5.18-1.35-8.08l-3.21-1.04 c-0.95-0.31-1.47-1.33-1.16-2.28c0.31-0.95,1.33-1.47,2.28-1.16l2.42,0.79c0.51-3.15,1.61-6.49,3.41-10.01l0.71-14.76 c0.05-0.99,0.89-1.76,1.89-1.72c0.46,0.02,0.86,0.2,1.16,0.49l0,0l0,0l6.86,6.53c5.09-2.05,10.22-3.15,15.39-3.21 c5.19-0.04,10.4,0.98,15.63,3.2l7.67-7.17c0.73-0.68,1.87-0.64,2.54,0.09c0.32,0.35,0.48,0.79,0.48,1.22l0,0l0.09,15.31 c2.09,3.65,3.32,7.05,3.84,10.24l3.08-1c0.95-0.31,1.97,0.21,2.28,1.16c0.31,0.95-0.21,1.97-1.16,2.28l-3.91,1.27 c0,0.08,0,0.17-0.01,0.25c-0.07,2.71-0.68,5.22-1.73,7.59l2.48,0.33c0.99,0.13,1.69,1.04,1.56,2.03c-0.13,0.99-1.03,1.69-2.03,1.56 l-3.89-0.52c-0.25,0.37-0.51,0.74-0.78,1.1c-2.31,3.11-5.08,5.61-8.12,7.54L101.96,99.54L101.96,99.54z M70.14,57.89l-4.86-4.62 l-0.54,11.2l0,0c-0.01,0.25-0.08,0.51-0.2,0.75c-1.83,3.5-2.89,6.79-3.3,9.84l11.35,3.68c0.95,0.3,1.47,1.33,1.16,2.28 c-0.3,0.95-1.33,1.47-2.28,1.16l-10.41-3.38c0.09,2.32,0.59,4.48,1.42,6.44l9.34-1.16c0.99-0.12,1.89,0.58,2.02,1.58 c0.12,0.99-0.58,1.9-1.58,2.02l-7.89,0.98c1.89,2.71,4.5,4.96,7.54,6.67c3.4,1.92,7.33,3.15,11.45,3.63 c3.64,0.42,7.39,0.24,11.01-0.6c1.39-0.34,2.78-0.77,4.17-1.3c4.37-1.72,8.36-4.52,11.49-8.53l-6.46-0.87 c-0.99-0.13-1.69-1.03-1.56-2.03c0.13-0.99,1.04-1.69,2.03-1.56l8.17,1.09c1-1.93,1.64-3.97,1.83-6.14l-9.68,3.14 c-0.95,0.3-1.97-0.21-2.28-1.16c-0.31-0.95,0.21-1.97,1.16-2.28l10.71-3.48c-0.4-3.03-1.59-6.33-3.71-9.96l0,0 c-0.15-0.26-0.25-0.58-0.25-0.91l-0.07-11.64l-5.45,5.1c-0.52,0.54-1.34,0.72-2.06,0.4c-5.11-2.32-10.18-3.4-15.21-3.36 c-5.04,0.04-10.07,1.21-15.09,3.38l0,0C71.45,58.51,70.68,58.39,70.14,57.89L70.14,57.89L70.14,57.89z M84.7,80.15 c-1,0-1.82-0.81-1.82-1.81c0-1,0.81-1.81,1.82-1.81h5.61c1,0,1.81,0.81,1.81,1.81c0,1-0.81,1.81-1.81,1.81h-1.02 c0.07,1.06,0.25,1.99,0.54,2.78c0.42,1.19,1.04,2.05,1.8,2.6c0.74,0.54,1.62,0.82,2.57,0.84c0.73,0.02,1.5-0.12,2.3-0.4 c0.94-0.33,1.98,0.16,2.31,1.1c0.33,0.94-0.16,1.98-1.1,2.31c-1.2,0.42-2.4,0.63-3.58,0.6c-1.7-0.03-3.28-0.54-4.63-1.54 c-0.67-0.5-1.28-1.11-1.81-1.84c-0.47,0.75-1.02,1.35-1.65,1.82c-2.11,1.57-4.79,1.58-7.69,1.17c-0.99-0.14-1.68-1.05-1.54-2.04 c0.13-0.99,1.05-1.68,2.04-1.54c2.07,0.29,3.91,0.35,5.03-0.49c1.02-0.76,1.68-2.38,1.77-5.39H84.7L84.7,80.15L84.7,80.15z M76.71,71.9c1.31,0,2.36,1.06,2.36,2.36c0,1.3-1.06,2.36-2.36,2.36c-1.31,0-2.36-1.06-2.36-2.36 C74.35,72.96,75.41,71.9,76.71,71.9L76.71,71.9L76.71,71.9z"/></g>
+                    </svg>
                 </div>
-                <svg class="h-16 w-16 hover:w-32  hover:h-32 hover:absolute" fill="#2e10658a" viewBox="0 0 119.72 122.88"><g><path d="M40.06,0.37c9.4,0,17.03,11.69,17.03,26.1s-7.63,26.1-17.03,26.1c-9.4,0-17.03-11.68-17.03-26.1 C23.04,12.06,30.66,0.37,40.06,0.37L40.06,0.37z M61.71,63.55c19.94,0.04,22.42,13.25,39.23,35.86 c8.38,16.45-2.5,26.82-21.15,22.38c-8.46-4.31-14.41-5.83-20.38-5.63c-10.34,0.36-12.95,7.18-24.98,6.7 c-9.28-0.25-13.46-4.14-14.27-10.07c-0.87-6.3,1.56-10.28,4.52-15.49C36.18,77.02,48.07,61.01,61.71,63.55L61.71,63.55L61.71,63.55 z M7.17,39.08C0.14,41.86-2.1,52.85,2.16,63.62C6.42,74.39,15.57,80.87,22.6,78.09c7.03-2.78,9.27-13.77,5.01-24.54 C23.35,42.78,14.2,36.3,7.17,39.08L7.17,39.08z M112.55,39.08c7.03,2.78,9.27,13.77,5.01,24.54 c-4.26,10.77-13.42,17.25-20.44,14.47c-7.03-2.78-9.27-13.77-5.01-24.54C96.37,42.78,105.52,36.3,112.55,39.08L112.55,39.08z M79.35,0c9.4,0,17.03,11.69,17.03,26.1s-7.63,26.1-17.03,26.1c-9.4,0-17.03-11.68-17.03-26.1C62.33,11.69,69.95,0,79.35,0L79.35,0 z"/></g></svg>
+                
                 <h3 class="my-6 text-xl font-semibold">Tierarzt nach Facbereich suchen</h3>
                 <p>Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform. Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform.</p>
             </div>
         </a>
-        <div class="w-96 shadow-2xl rounded-md bg-white hover:bg-indigo-100 p-8">
-            <a href="#therapies">
-                <img width="64" src="https://uploads-ssl.webflow.com/6414640d6e0e2d7af389e640/641470221ebc5e3c9f735296_Walking%20(1).png" alt="">
-                <h3 class="my-6 text-xl font-semibold">Tierarzt nach Leistung suchen</h3>
+        <a href="#therapies">
+            <div class="w-96 shadow-2xl rounded-md bg-white hover:bg-indigo-100 p-8 relative group">
+                <div class="h-[68px] w-[68px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-[64px] group-hover:scale-110 transition-transform duration-200 fill-[#2e10658a] group-hover:fill-[#3512758a]" viewBox="0 0 119.71 122.88">
+                        <g><path class="st0" fill-rule="evenodd" clip-rule="evenodd" d="M40.06,0.37c9.4,0,17.03,11.69,17.03,26.1c0,14.41-7.63,26.1-17.03,26.1c-9.4,0-17.03-11.68-17.03-26.1 C23.04,12.06,30.66,0.37,40.06,0.37L40.06,0.37L40.06,0.37z M58.35,76.23h6.57c1.23,0,2.23,1,2.23,2.23v7.65h7.65 c1.23,0,2.23,1,2.23,2.23v6.57c0,1.23-1,2.23-2.23,2.23h-7.65v7.65c0,1.23-1,2.23-2.23,2.23h-6.57c-1.23,0-2.23-1.01-2.23-2.23 v-7.65h-7.65c-1.23,0-2.23-1-2.23-2.23v-6.57c0-1.23,1-2.23,2.23-2.23h7.65v-7.65C56.12,77.24,57.12,76.23,58.35,76.23L58.35,76.23 L58.35,76.23z M61.71,63.55c19.94,0.04,22.42,13.25,39.23,35.86c8.38,16.45-2.5,26.82-21.15,22.38 c-8.46-4.31-14.41-5.83-20.38-5.63c-10.34,0.36-12.95,7.18-24.98,6.7c-9.28-0.25-13.46-4.14-14.27-10.07 c-0.87-6.3,1.56-10.28,4.52-15.49C36.18,77.02,48.07,61.01,61.71,63.55L61.71,63.55L61.71,63.55L61.71,63.55z M7.17,39.08 C0.14,41.86-2.1,52.85,2.16,63.62C6.42,74.39,15.57,80.87,22.6,78.09s9.27-13.77,5.01-24.54C23.35,42.78,14.2,36.3,7.17,39.08 L7.17,39.08L7.17,39.08z M112.54,39.08c7.03,2.78,9.27,13.77,5.01,24.54c-4.26,10.77-13.42,17.25-20.44,14.47 c-7.03-2.78-9.27-13.77-5.01-24.54S105.51,36.3,112.54,39.08L112.54,39.08L112.54,39.08z M79.35,0c9.4,0,17.03,11.69,17.03,26.1 c0,14.41-7.63,26.1-17.03,26.1S62.32,40.52,62.32,26.1C62.33,11.69,69.95,0,79.35,0L79.35,0L79.35,0z"/></g>
+                    </svg>
+                </div>
+                
+                <h3 class="my-6 text-xl font-semibold">Tierarzt nach Leistungen suchen</h3>
                 <p>Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform. Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform.</p>
-            </a>
-        </div>
-        <div class="w-96 shadow-2xl rounded-md bg-white hover:bg-indigo-100 p-8">
-            <a href="#location">
-                <img width="64" src="https://uploads-ssl.webflow.com/6414640d6e0e2d7af389e640/64146fd8dd2820431df2629a_Home%20(1).png" alt="">
+            </div>
+        </a>
+        <a href="#therapies">
+            <div class="w-96 shadow-2xl rounded-md bg-white hover:bg-indigo-100 p-8 relative group">
+                <div class="h-[68px] w-[68px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-[64px] group-hover:scale-110 transition-transform duration-200 fill-[#2e10658a] group-hover:fill-[#3512758a]" viewBox="0 0 92.53 122.88">
+                        <path fill-rule="evenodd" d="M46.27,18.21A28.62,28.62,0,1,1,17.64,46.83,28.62,28.62,0,0,1,46.27,18.21Zm1.36,97.49A82.87,82.87,0,0,0,64,101.81,85.44,85.44,0,0,0,84.56,62.23c2.81-13.67,1.5-27-4.75-37.34a36.74,36.74,0,0,0-6.63-8.06C65.62,9.93,57,6.64,48.23,6.56,39.07,6.49,29.77,10,21.55,16.5a38.54,38.54,0,0,0-8.63,9.56C7.15,35.15,5.41,46.43,7.31,58.24c1.94,12,7.66,24.61,16.77,36A102.46,102.46,0,0,0,47.63,115.7Zm21.24-9.46a89.32,89.32,0,0,1-19.33,16,3.28,3.28,0,0,1-3.71.13,109.25,109.25,0,0,1-26.9-24c-9.8-12.31-16-26-18.1-39.1C-1.33,45.89.7,33,7.36,22.53a45.3,45.3,0,0,1,10.1-11.18C26.85,3.87,37.6-.09,48.29,0,58.6.09,68.79,3.92,77.6,12a43.1,43.1,0,0,1,7.82,9.52c7.15,11.8,8.71,26.83,5.57,42.05a92.2,92.2,0,0,1-22.12,42.7ZM32.53,41.67h8.58V33.09a1.3,1.3,0,0,1,1.3-1.3h7.72a1.31,1.31,0,0,1,1.3,1.3v8.58H60A1.3,1.3,0,0,1,61.3,43v7.72A1.3,1.3,0,0,1,60,52H51.43v8.58a1.31,1.31,0,0,1-1.3,1.3H42.41a1.3,1.3,0,0,1-1.3-1.3V52H32.53a1.3,1.3,0,0,1-1.3-1.3V43a1.3,1.3,0,0,1,1.3-1.3Z"/>                    </svg>
+                    </div>
+                
                 <h3 class="my-6 text-xl font-semibold">Tierarzt nach Ort suchen</h3>
                 <p>Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform. Entdecken Sie die beste tierärztliche Betreuung mit unserer benutzerfreundlichen Plattform.</p>
-            </a>
-        </div>
+            </div>
+        </a>
     </div>
 </div>
-
-{{-- <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const image = document.getElementById('image');
-    const smart = document.getElementById('smart');
-    const speed = 0.2; 
-
-    window.addEventListener("scroll", function() {
-        const scrolled = window.pageYOffset * speed;
-        if (image) {
-            image.style.transform = `translateY(-${scrolled}px)`;
-        }
-        if (smart) {
-            smart.style.transform = `translateY(-${scrolled}px)`;
-        }
-    });
-});
-</script> --}}

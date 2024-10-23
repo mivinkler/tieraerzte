@@ -35,7 +35,7 @@
       </div>
 
       <div class="sm:col-span-6">
-        @include('components.form.textarea', ['name' => 'text_aboutus'])
+        @include('components.form.textarea', ['name' => 'text_aboutus', 'maxlength' => '500'])
       </div>
     </section>
     
@@ -50,12 +50,9 @@
     <section>
       <div>
         <h3 class="font-bold mb-6 text-lg">Fachbereiche</h3>
-        <x-form.form-therapy-list :category="1" :therapies="$therapies" :praxis="$praxis ?? ''" />
+        <x-form.form-therapy-list :therapyList="$therapyList" :praxis="$praxis ?? ''" />
       </div>
-      <div>
-        <h3 class="font-bold my-6 pt-4 border-t border-gray-300 text-lg">Leistungen</h3>
-        <x-form.form-therapy-list :category="2" :therapies="$therapies" :praxis="$praxis ?? ''"/>
-      </div>
+      
     </section>
 
     <div class="flex justify-end">
